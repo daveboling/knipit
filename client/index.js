@@ -1,7 +1,7 @@
 (function(){
   'use strict';
 
-  angular.module('mean-template', ['ngRoute', 'LocalForageModule'])
+  angular.module('knipit', ['ngRoute', 'LocalForageModule'])
   .config(['$routeProvider', '$httpProvider', '$localForageProvider', function($routeProvider, $httpProvider, $localForageProvider){
     $routeProvider
     .when('/', {templateUrl:'/views/home/home.html', controller:'HomeCtrl'})
@@ -11,7 +11,7 @@
     .otherwise({redirectTo:'/'});
 
     $httpProvider.interceptors.push('HttpInterceptor');
-    $localForageProvider.config({name:'mean-template', storeName:'cache', version:1.0});
+    $localForageProvider.config({name:'knipit', storeName:'cache', version:1.0});
   }]);
 })();
 

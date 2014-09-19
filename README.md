@@ -1,37 +1,16 @@
-## name of project
-### Code Badges
-build status icon
-coverage status icon
+## Knipit - Know it? Prove it!
 
-### Screenshots
-![Image1](https://raw.githubusercontent.com/nss-cohort-2014-06-07/express-template/master/docs/screenshots/one.jpg)
-![Image2](https://raw.githubusercontent.com/nss-cohort-2014-06-07/express-template/master/docs/screenshots/two.jpg)
 
 ### Description
-write a description about your project
+So you just made some flash cards? Cool, now it's time to flip those cards like nobody's business. 
 
-### Models
-```
-Model 1
-```
+Know it? 
 
-```
-Model 2
-```
+No?!
 
-### Database
-```
-Collecion 1
-```
+Somebody just challenged you using your own deck. I hope you've studied, cause if not they're gonna win and everyone's gonna know it. Study study study!
 
-```
-Collection 2
-```
-
-### Features
-- [x] Feature 1
-- [ ] Feature 2
-- [x] Feature 3
+Prove it!
 
 ### Running Tests
 ```bash
@@ -40,7 +19,7 @@ $ npm test
 ```
 
 ### Contributors
-- [Chyld Medford](https://github.com/chyld)
+- [David D. Boling](https://github.com/kadowi)
 
 ### License
 [MIT](LICENSE)

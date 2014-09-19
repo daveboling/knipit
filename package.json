@@ -1,17 +1,17 @@
 {
-  "name": "mean-template",
+  "name": "knipit",
   "version": "0.0.0",
-  "description": "The MEAN Template",
+  "description": "Knipit - Know it, prove it?",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nss-cohort-2014-06-07/mean-template"
+    "url": "https://github.com/kadowki/mean-template"
   },
-  "author": "Chyld Medford <chyld.medford@gmail.com>",
+  "author": "David Boling <kadowki@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/nss-cohort-2014-06-07/mean-template/issues"
+    "url": "https://github.com/kadowki/mean-template/issues"
   },
-  "homepage": "https://github.com/nss-cohort-2014-06-07/mean-template",
+  "homepage": "https://github.com/kadowki/mean-template",
   "dependencies": {
     "async": "~0.9.0",
     "body-parser": "~1.8.2",
