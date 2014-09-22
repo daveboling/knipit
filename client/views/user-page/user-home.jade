@@ -1,0 +1,27 @@
+h3 {{title}} 
+
+.row
+  .col-xs-4
+    h2 Challenges
+  .col-xs-8
+    button.btn.btn-success(type='button' ng-click='new = true' ng-hide='new') New Deck
+    button.btn.btn-success(type='button' ng-click='new = false' ng-show='new') Cancel 
+    #newDeck(ng-show='new')
+      form(novalidate)
+        .form-group
+          label Deck Name
+          input(type='text' name='name' ng-minlength='3' ng-model='deck.name')
+          label Category
+          select(name='category' ng-model='deck.category')
+            option(value='programming') Programming
+            option(value='sports') Sports
+            option(value='history') History
+            option(value='science') Science
+          button.btn.btn-primary(type='button' ng-click='createDeck()') Create
+    #yourDecks
+      h2 Your decks
+.row 
+  .col-xs-4
+  .col-xs-4
+    h2 Your stats
+  .col-xs-4
