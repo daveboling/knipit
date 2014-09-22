@@ -6,12 +6,12 @@
     $scope.user = {};
 
     function success(response){
-      toastr.success('Successful login.');
+      toastr.success('Welcome.');
       $location.path('/');
     }
 
     function failure(response){
-      toastr.error('Error during login, try again.');
+      toastr.error('Username or password incorrect, please try again.');
       $scope.user = {};
     }
 
