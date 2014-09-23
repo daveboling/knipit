@@ -9,18 +9,18 @@
     $scope.deck = {};
     $scope.decks = [];
 
-    console.log($rootScope.user.email || 'No email');
 
     function fail(){
       toastr.error('Something went wrong.');
     }
 
-    $scope.getDecks = function(){
-      LocalUser.getDecks($rootScope.user.email).then(function(res){
-        $scope.decks = res.data.decks;
-      }, fail);
-    };
+    //Display all logged in user's decks
+    LocalUser.getDecks().then(function(res){
+      $scope.decks = res.data.decks || [];
+    }, fail);
 
+
+    //create a new deck and return the newly created deck w/ deck id
     $scope.createDeck = function(){
       LocalUser.createDeck($scope.deck).then(function(res){
         $scope.decks.push(res.data.deck);
@@ -38,6 +38,8 @@
     //delete deck
   }]);
 
+
+
   //FACTORY
   userHome.factory('LocalUser', ['$http', function($http){
 
@@ -45,8 +47,8 @@
       return $http.post('/deck/create', deck);
     }
 
-    function getDecks(email){
-      return $http.get('/decks/localuser/' + email);
+    function getDecks(){
+      return $http.get('/decks/all/');
     }
 
     return {createDeck: createDeck, getDecks: getDecks};

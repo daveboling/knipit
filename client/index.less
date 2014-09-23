@@ -18,17 +18,13 @@
 @SILVER:  #DDDDDD;
 
 * {
-  border: 1px solid black;
+  border: 0px solid black;
 }
 
 body{
   background-color: white;
 }
 
-#wrapper {
-  width: 100%;
-  height: 100%;
-}
 
 input.ng-invalid, select.ng-invalid{
   border-color: red;
@@ -37,6 +33,17 @@ input.ng-invalid, select.ng-invalid{
 input.ng-valid, select.ng-valid{
   border-color: green;
 }
+
+
+//Site wrapper
+#wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+/*----------------------------------------
+LOGIN AND REGISTER
+------------------------------------------*/
 
 #loginForm, #registerForm {
   width: 200px;
@@ -52,3 +59,44 @@ input.ng-valid, select.ng-valid{
   margin-top: 10px;
 }
 
+/*----------------------------------------
+LOGIN AND REGISTER END
+------------------------------------------*/
+
+
+
+
+/*----------------------------------------
+USER DASHBOARD
+------------------------------------------*/
+
+
+//deck display
+.deck {
+  width: 150px;
+  height: 175px;
+  display: inline-block;
+  border: 1px solid black;
+  margin: 10px;
+  padding: 10px;
+
+  .title {
+    font-size: 2em;
+    text-align: center;
+  }
+
+  .category, .numCards {
+    font-size: 1.2em;
+    font-weight: bold;
+  }
+
+}
+
+.deck:hover{
+  background-color: black;
+  color: white;
+}
+
+/*----------------------------------------
+USER DASHBOARD
+------------------------------------------*/

@@ -8,3 +8,9 @@ exports.new = function(req, res){
     res.send({deck: deck});
   });
 };
+
+exports.localDecks = function(req, res){
+  Deck.findAllByUserId(req.user._id, function(err, decks){
+    res.send({decks: decks});
+  });
+};

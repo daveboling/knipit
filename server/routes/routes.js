@@ -22,13 +22,18 @@ module.exports = function(app, express){
   app.use(security.authenticate);
   app.use(debug.info);
 
+  //guest users
   app.get('/home', home.index);
   app.post('/register', users.register);
   app.post('/login', users.login);
 
+  //logged in users
   app.use(security.bounce);
   app.delete('/logout', users.logout);
+
+  //deck routes
   app.post('/deck/create', decks.new);
+  app.get('/decks/all', decks.localDecks);
 
   console.log('Express: Routes Loaded');
 };

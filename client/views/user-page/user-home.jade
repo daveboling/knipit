@@ -1,9 +1,9 @@
 h3 {{title}} 
 
 .row
-  .col-xs-4
+  .col-sm-4
     h2 Challenges
-  .col-xs-8
+  .col-sm-8
     button.btn.btn-success(type='button' ng-click='new = true' ng-hide='new') New Deck
     button.btn.btn-success(type='button' ng-click='new = false' ng-show='new') Cancel 
     #newDeck(ng-show='new')
@@ -20,7 +20,11 @@ h3 {{title}}
           button.btn.btn-primary(type='button' ng-click='createDeck()') Create
     #yourDecks
       h2 Your decks
-      pre {{decks | json}}
+      .deck(ng-repeat='deck in decks' data-category='deck.category')
+        .title {{deck.name}}
+        .category {{deck.category}}
+        .subCategory {{deck.subCategory || ''}}
+        .numCards {{deck.cards || 'No cards yet...'}}
 .row 
   .col-xs-4
   .col-xs-4
