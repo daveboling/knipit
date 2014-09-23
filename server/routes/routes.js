@@ -34,6 +34,9 @@ module.exports = function(app, express){
   //deck routes
   app.post('/deck/create', decks.new);
   app.get('/decks/all', decks.localDecks);
+  app.get('/deck/:deckId/view', decks.select);
+  //app.post(EDIT DECK)
+  //app.delete(DELETE DECK)
 
   console.log('Express: Routes Loaded');
 };

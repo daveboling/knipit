@@ -14,3 +14,9 @@ exports.localDecks = function(req, res){
     res.send({decks: decks});
   });
 };
+
+exports.select = function(req, res){
+  Deck.findById(req.params.deckId, function(err, deck){
+    res.send({deck: deck});
+  });
+};
