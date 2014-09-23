@@ -1,2 +1,19 @@
-h2 {{title}}
-pre {{deck}}
+h2 {{deck.name}}
+.row#options
+  .col-xs-4 Flashcards
+  .col-xs-4 Test
+  .col-xs-4 Challenge
+table.table#selectedDeck(ng-hide='editMode')
+  tr(ng-repeat='card in deck.cards')
+    td {{card.question}}
+    td {{card.answer}}
+
+table.table#editMode(ng-show='editMode')
+  form(role='form', novalidate, name='editForm' ng-show='editMode')
+    tr(ng-repeat='card in deck.cards')
+      td: input.form-control(type='text', ng-value='card.question || ""', ng-model='edit.question')
+      td: input.form-control(type='text', ng-value='card.answer || ""', ng-model='edit.answer')
+    
+
+button.btn.btn-success#addOrRemove(type='button' ng-hide='editMode' ng-click='editDeck()') Add or Remove Card(s)
+button.btn.btn-success#save(type='button' ng-show='editMode' ng-click='saveDeck()') Save
