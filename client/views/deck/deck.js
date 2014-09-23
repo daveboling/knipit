@@ -17,7 +17,13 @@
     };
 
     $scope.saveDeck = function(){
-      $scope.editMode = false;
+      Deck.save($scope.deck._id).then(function(res){
+        $scope.editMode = false;
+      });
+    };
+
+    $scope.addCard = function(){
+      $scope.deck.cards.push({question: '', answer: ''});
     };
 
   }]);
