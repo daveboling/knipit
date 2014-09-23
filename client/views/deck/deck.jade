@@ -1,15 +1,22 @@
-h2 {{deck.name}}
 .row#options
   .col-xs-4 Flashcards
   .col-xs-4 Test
   .col-xs-4 Challenge
+
+//View Mode
 table.table#selectedDeck(ng-hide='editMode')
+  .header(ng-hide='editMode')
+    h3 {{deck.name}}
+    h3 {{deck.subCategory || 'Add a sub category!'}}
   tr(ng-repeat='card in deck.cards')
     td {{card.question}}
     td {{card.answer}}
 
-table.table#editMode(ng-show='editMode')
-  form(role='form', novalidate, name='editForm' ng-show='editMode')
+//Edit Mode
+form(role='form', novalidate, name='editForm' ng-show='editMode')
+  input(type='text' ng-value='deck.name || ""' ng-model='deck.name')
+  input(type='text' ng-value='deck.subCategory || ""' ng-model='deck.subCategory')
+  table.table#editMode(ng-show='editMode')
     tr(ng-repeat='card in deck.cards')
       td: input.form-control(type='text', ng-value='card.question || ""', ng-model='deck.cards[$index].question')
       td: input.form-control(type='text', ng-value='card.answer || ""', ng-model='deck.cards[$index].answer' ng-keydown='enterAddCard($event, $last)')

@@ -23,7 +23,6 @@ exports.select = function(req, res){
 
 exports.saveChanges = function(req, res){
   Deck.saveChanges(req.body, function(err, deck){
-    console.log(err, deck);
     res.send({deck: deck});
   });
 };
