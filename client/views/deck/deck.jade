@@ -12,7 +12,7 @@ table.table#editMode(ng-show='editMode')
   form(role='form', novalidate, name='editForm' ng-show='editMode')
     tr(ng-repeat='card in deck.cards')
       td: input.form-control(type='text', ng-value='card.question || ""', ng-model='deck.cards[$index].question')
-      td: input.form-control(type='text', ng-value='card.answer || ""', ng-model='deck.cards[$index].answer')
+      td: input.form-control(type='text', ng-value='card.answer || ""', ng-model='deck.cards[$index].answer' ng-keydown='enterAddCard($event, $last)')
     
 
 button.btn.btn-success#addOrRemove(type='button' ng-hide='editMode' ng-click='editDeck()') Add or Remove Card(s)

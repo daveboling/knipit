@@ -6,7 +6,7 @@ var Mongo = require('mongodb');
 function Deck(o, ownerId){
   this.name     = o.name;
   this.category = o.category;
-  this.ownerId  = Mongo.ObjectID(ownerId);
+  this.ownerId  = ownerId;
 
   //each deck starts with 0 cards
   this.cards    = [];
@@ -24,7 +24,7 @@ Deck.findById = function(deckId, cb){
 };
 
 Deck.create = function(deck, userId, cb){
-  var d = new Deck(deck, userId);
+  var d = new Deck(deck, Mongo.ObjectID(userId));
   Deck.collection.save(d, cb);
 };
 
@@ -34,7 +34,9 @@ Deck.findAllByUserId = function(userId, cb){
 };
 
 Deck.saveChanges = function(deck, cb){
+  //recast into Mongo ObjectIDs
   deck._id = Mongo.ObjectID(deck._id);
+  deck.ownerId = Mongo.ObjectID(deck.ownerId);
   Deck.collection.save(deck, cb);
 };
 

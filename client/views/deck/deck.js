@@ -26,6 +26,15 @@
       });
     };
 
+    //enter key is pressed on the last answer input
+    $scope.enterAddCard = function(e, last){
+      if(e.keyCode === 13 && last){
+        $scope.deck.cards.push({question: '', answer: ''});
+        $(this).next().focus();
+      }
+    };
+
+    //general add card button
     $scope.addCard = function(){
       $scope.deck.cards.push({question: '', answer: ''});
     };
