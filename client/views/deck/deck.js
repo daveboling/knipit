@@ -17,7 +17,11 @@
     };
 
     $scope.saveDeck = function(){
-      Deck.save($scope.deck._id).then(function(res){
+      //remove empty cards
+      $scope.deck.cards = Deck.removeEmptyCards($scope.deck.cards);
+
+      //save edited deck
+      Deck.save($scope.deck).then(function(res){
         $scope.editMode = false;
       });
     };

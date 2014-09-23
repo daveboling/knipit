@@ -20,3 +20,10 @@ exports.select = function(req, res){
     res.send({deck: deck});
   });
 };
+
+exports.saveChanges = function(req, res){
+  Deck.saveChanges(req.body, function(err, deck){
+    console.log(err, deck);
+    res.send({deck: deck});
+  });
+};
