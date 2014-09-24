@@ -14,11 +14,11 @@
   #selectedDeck
     form(role='form', novalidate, name='editForm')
     .row.card(ng-repeat='card in deck.cards')
-      .col-sm-5.question 
-        .viewMode(ng-hide='editMode'){{$index + 1}}. {{card.question}}
+      .col-sm-5.question
+        .viewMode(ng-hide='editMode') {{$index + 1}}. {{card.question}}
         textarea(ng-value='card.question || ""', ng-model='deck.cards[$index].question', ng-show='editMode')
       .col-sm-6.answer 
-        .viewMode(ng-hide='editMode'){{card.answer}}
+        .viewMode(ng-hide='editMode') {{card.answer}}
         textarea(ng-value='card.answer || ""', ng-model='deck.cards[$index].answer' ng-show='editMode', ng-keydown='enterAddCard($event, $last)')
       .col-sm-1.controls
         i.fa.fa-times

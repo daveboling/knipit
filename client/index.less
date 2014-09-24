@@ -35,6 +35,46 @@ input.ng-valid, select.ng-valid{
   height: 100%;
 }
 
+//General Wrappers
+#deckWrapper, #inner-wrap, .wrap {
+  width: 80%;
+  height: 100%;
+  margin: 0px auto;
+  margin-top: 5px;
+;}
+
+//General CSS
+.no-margin-top {
+  margin-top: 0px;
+}
+
+.no-margin-left {
+  margin-left: 0px;
+}
+
+.customButton {
+  font-size: 1.2em;
+  padding: 10px;
+  width: 100px;
+  height: 50px;
+  color: black;
+  border: 1px solid white;
+  border-radius: 10px;
+  text-align: center;
+  background-color: @AQUA;
+  width: 50%;
+  height: 100%;
+  margin:0px auto;
+  margin-top: 10px;
+
+  &:hover{
+    background-color: black;
+    color: white;
+    cursor: pointer;
+  }
+}
+
+
 /*----------------------------------------
 LOGIN AND REGISTER
 ------------------------------------------*/
@@ -63,12 +103,47 @@ LOGIN AND REGISTER END
 USER DASHBOARD
 ------------------------------------------*/
 
+#challenges{
+  background-color: @WHITE;
+  min-height: 300px;
+  height: 100%;
+  text-align: center;
+
+  .challenge {
+    height: 150px;
+    width: 400px;
+    display: inline-block;
+    padding: 10px;
+    border:1px solid white;
+  }
+
+  .challenge:hover {
+    border: 1px solid @NAVY;
+ }
+
+}
+
+#userControls {
+  min-height: 100px;
+  width: 100%;
+  background-color: @NAVY;
+  color: white;
+}
+
+#newDeck {
+  width: 50%;
+  margin:0px auto;
+}
+
+#yourDecks {
+  background-color: @WHITE;
+  height: 100%;
+}
 
 //deck display
 .deck {
-  width: 150px;
-  height: 175px;
-  display: inline-block;
+  height: 125px;
+  display: block;
   border: 1px solid black;
   margin: 10px;
   padding: 10px;
@@ -84,7 +159,7 @@ USER DASHBOARD
     text-align: center;
   }
 
-  .category, .numCards {
+  .category, .subCategory, .numCards, .subCategory, .deckProgress, .deckRating {
     font-size: 1.2em;
     font-weight: bold;
   }
@@ -101,12 +176,6 @@ USER DASHBOARD
 /*----------------------------------------
 SELECTED DECK
 ------------------------------------------*/
-#deckWrapper, #inner-wrap {
-  width: 80%;
-  height: 100%;
-  margin: 0px auto;
-  margin-top: 5px;
-;}
 
 #options {
   min-height: 200px;
