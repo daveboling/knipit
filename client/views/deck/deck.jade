@@ -1,29 +1,33 @@
 .row#options
-  .col-xs-4 Flashcards
-  .col-xs-4 Test
-  .col-xs-4 Challenge
+  #inner-wrap
+    .col-sm-6
+      #deck-name {{deck.name}}
+      #deck-category Category: {{deck.category}}
+      #deck-subcategory Sub-Category: {{deck.subCategory || 'None...'}}
+    .col-sm-6
+      button.btn.btn-primary.action(type='button') Flip cards
+      button.btn.btn-primary.action(type='button') Take a test
+      button.btn.btn-primary.action(type='button') Issue a challenge
 
-//View Mode
-table.table#selectedDeck(ng-hide='editMode')
-  .header(ng-hide='editMode')
-    h3 {{deck.name}}
-    h3 {{deck.subCategory || 'Add a sub category!'}}
-  tr(ng-repeat='card in deck.cards')
-    td {{card.question}}
-    td {{card.answer}}
+.row#deckWrapper
+  //View Mode
+  #selectedDeck
+    form(role='form', novalidate, name='editForm')
+    .row.card(ng-repeat='card in deck.cards')
+      .col-sm-5.question 
+        .viewMode(ng-hide='editMode'){{$index + 1}}. {{card.question}}
+        textarea(ng-value='card.question || ""', ng-model='deck.cards[$index].question', ng-show='editMode')
+      .col-sm-6.answer 
+        .viewMode(ng-hide='editMode'){{card.answer}}
+        textarea(ng-value='card.answer || ""', ng-model='deck.cards[$index].answer' ng-show='editMode', ng-keydown='enterAddCard($event, $last)')
+      .col-sm-1.controls
+        i.fa.fa-times
+        i.fa.fa-pencil-square-o
+    .row.short-stuff
+      .col-xs-12
+        button.btn.btn-success.full#addCard(type='button' ng-show='editMode' ng-click='addCard()') Add Card 
+    .row.big-stuff
+        .col-xs-12
+        button.btn.btn-danger.full(type='button' ng-hide='editMode' ng-click='editDeck()') Add or Remove 
+        button.btn.btn-success.full(type='button' ng-show='editMode' ng-click='saveDeck()') Save
 
-//Edit Mode
-form(role='form', novalidate, name='editForm' ng-show='editMode')
-  input(type='text' ng-value='deck.name || ""' ng-model='deck.name')
-  input(type='text' ng-value='deck.subCategory || ""' ng-model='deck.subCategory')
-  table.table#editMode(ng-show='editMode')
-    tr(ng-repeat='card in deck.cards')
-      td: input.form-control(type='text', ng-value='card.question || ""', ng-model='deck.cards[$index].question')
-      td: input.form-control(type='text', ng-value='card.answer || ""', ng-model='deck.cards[$index].answer' ng-keydown='enterAddCard($event, $last)')
-    
-
-button.btn.btn-success#addOrRemove(type='button' ng-hide='editMode' ng-click='editDeck()') Add or Remove Card(s)
-button.btn.btn-success#save(type='button' ng-show='editMode' ng-click='saveDeck()') Save
-button.btn.btn-success#addCard(type='button' ng-show='editMode' ng-click='addCard()') Add Card 
-
-pre {{deck.cards}}

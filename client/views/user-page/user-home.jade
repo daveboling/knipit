@@ -25,7 +25,7 @@ h3 {{title}}
         .title {{deck.name}}
         .category {{deck.category}}
         .subCategory {{deck.subCategory || ''}}
-        .numCards {{deck.cards || 'No cards yet...'}}
+        .numCards {{deck.cards.length + ' cards' || 'No cards yet...'}}
 .row 
   .col-xs-4
   .col-xs-4
