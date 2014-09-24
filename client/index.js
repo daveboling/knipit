@@ -1,7 +1,7 @@
 (function(){
   'use strict';
 
-  angular.module('knipit', ['ngRoute', 'LocalForageModule'])
+  angular.module('knipit', ['ngRoute', ,'ngAnimate', 'LocalForageModule'])
   .config(['$routeProvider', '$httpProvider', '$localForageProvider', function($routeProvider, $httpProvider, $localForageProvider){
     $routeProvider
     .when('/', {templateUrl:'/views/home/home.html', controller:'HomeCtrl'})

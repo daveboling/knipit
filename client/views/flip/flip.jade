@@ -1,9 +1,15 @@
-h2 {{title}}
+.wrap#flipIt
+  #questionCard(ng-hide='flipped' ng-click='flipCard()')
+    #question {{currentCard.question}}
+  //Need to take next card out 
+  #answerCard.flipInX(ng-show='flipped')
+    #question {{currentCard.answer}}
+      p(ng-click='thumbs("up")') THUMBS UP
+      p(ng-click='thumbs("down")') THUMBS DOWN
+
+
 pre {{deck}}
 pre {{currentCard}}
+pre {{progress}}
+pre Precent Complete: {{(progress.complete / progress.deckSize) * 100}}
 
-.wrap
-  #questionCard(ng-hide='isQuestion')
-
-
-.customButton(ng-click='nextCard()') Next Card

@@ -44,6 +44,5 @@ Deck.saveChanges = function(deck, cb){
 
 //Deck.copy
 
-//Deck.flipCards(type)
 
 module.exports = Deck;
