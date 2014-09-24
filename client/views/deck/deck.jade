@@ -5,7 +5,7 @@
       #deck-category Category: {{deck.category}}
       #deck-subcategory Sub-Category: {{deck.subCategory || 'None...'}}
     .col-sm-6
-      button.btn.btn-primary.action(type='button') Flip cards
+      button.btn.btn-primary.action(type='button' ng-click='flip()') Flip cards
       button.btn.btn-primary.action(type='button') Take a test
       button.btn.btn-primary.action(type='button') Issue a challenge
 

@@ -3,7 +3,7 @@
 
   var deck = angular.module('knipit');
 
-  deck.controller('DeckCtrl', ['$scope', '$routeParams', 'Deck', function($scope, $routeParams, Deck){
+  deck.controller('DeckCtrl', ['$scope', '$routeParams', '$location', 'Deck', function($scope, $routeParams, $location, Deck){
     $scope.editMode = false;
     $scope.deck = {};
 
@@ -37,6 +37,10 @@
     //general add card button
     $scope.addCard = function(){
       $scope.deck.cards.push({question: '', answer: ''});
+    };
+
+    $scope.flip = function(){
+      $location.path('/flip/' + $scope.deck._id);
     };
 
   }]);
