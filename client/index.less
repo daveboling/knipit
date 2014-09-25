@@ -29,11 +29,11 @@ input.ng-valid, select.ng-valid{
 
 
 //Site wrapper
-#wrapper {
-  min-height: 100%;
-  height: auto !important;
-  height: 100%;
-}
+//#wrapper {
+//  min-height: 100%;
+//  height: auto !important;
+//  height: 100%;
+//}
 
 //General Wrappers
 #deckWrapper, #inner-wrap, .wrap {
@@ -75,6 +75,37 @@ input.ng-valid, select.ng-valid{
 }
 
 //Transitions
+.smooth-entrance {
+  &.ng-enter {
+    transition: 1s;
+    opacity: 0;
+  }
+
+  &.ng-enter-stagger{
+    transition-delay: 0.1s;
+  }
+
+  &.ng-enter-active {
+    opacity: 1;
+  }
+}
+
+#container {
+  &.ng-enter {
+    transition: 1s;
+    opacity: 0;
+  }
+  &.ng-enter-active {
+    opacity: 1;
+  }
+
+}
+
+
+
+
+
+
 
 
 /*----------------------------------------
@@ -97,6 +128,12 @@ LOGIN AND REGISTER
 /*----------------------------------------
 LOGIN AND REGISTER END
 ------------------------------------------*/
+
+
+
+
+
+
 
 
 
@@ -142,6 +179,7 @@ USER DASHBOARD
   height: 100%;
 }
 
+
 //deck display
 .deck {
   height: 125px;
@@ -149,6 +187,8 @@ USER DASHBOARD
   border: 1px solid black;
   margin: 10px;
   padding: 10px;
+
+  .smooth-entrance;
 
   &:hover {
     background-color: black;
@@ -171,6 +211,13 @@ USER DASHBOARD
 /*----------------------------------------
 USER DASHBOARD
 ------------------------------------------*/
+
+
+
+
+
+
+
 
 
 

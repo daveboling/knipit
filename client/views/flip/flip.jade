@@ -1,15 +1,20 @@
-.wrap#flipIt
-  #questionCard(ng-hide='flipped' ng-click='flipCard()')
-    #question {{currentCard.question}}
-  //Need to take next card out 
-  #answerCard.flipInX(ng-show='flipped')
-    #question {{currentCard.answer}}
-      p(ng-click='thumbs("up")') THUMBS UP
-      p(ng-click='thumbs("down")') THUMBS DOWN
 
+.row#card-top
+  .wrap
+    #progress Progress: {{(progress.complete / progress.deckSize * 100) + '%' }}
+    .customButton#shuffle Shuffle
 
-pre {{deck}}
-pre {{currentCard}}
-pre {{progress}}
-pre Precent Complete: {{(progress.complete / progress.deckSize) * 100}}
+.wrap(ng-hide='isComplete')
+  #questionCard(ng-hide='flipped', ng-click='flipCard()')
+      #question {{currentCard.question}}
+    //Need to take next card out 
+  #answerCard(ng-show='flipped')
+      #answer {{currentCard.answer}}
+      i.fa.fa-thumbs-up.fa-4x.thumbs-up(ng-click='thumbs("up")')
+      i.fa.fa-thumbs-down.fa-4x.thumbs-down(ng-click='thumbs("down")') 
 
+.wrap#done(ng-show='isComplete')
+      p How'd you do?
+      #correct Correct: {{progress.correct}} 
+      #wrong Wrong: {{progress.wrong}}
+      .customButton Retry?

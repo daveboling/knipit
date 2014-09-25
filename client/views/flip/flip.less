@@ -1,5 +1,46 @@
-#flipIt {
-  width: 300px;
-  height: 300px;
+
+@NAVY: #001F3F;
+@AQUA: #7FDBFF;
+@WHITE: #FFFFFF;
+@RED: #FF4136;
+
+#answerCard, #questionCard, #done {
+  min-width: 300px;
+  min-height: 300px;
+  margin-top: 20px;
+  margin-bottom: 20px;
   background-color: white; 
+  border: 2px solid black;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  font-size: 2.5em;
+
+  &:hover {
+    cursor: pointer;
+    border: 4px solid black;
+  }
 }
+
+#card-top {
+  min-height: 200px;
+  max-height: 200px;
+  background-color: @NAVY;
+  border: 2px double black;
+  color: white;
+}
+
+#progress {
+  text-align: center;
+  font-size: 2em;
+}
+
+.thumbs-up:hover{
+  color: green;
+}
+
+.thumbs-down:hover {
+  color: red;
+}
+
+

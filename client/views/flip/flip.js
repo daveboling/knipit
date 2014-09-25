@@ -9,6 +9,7 @@
     $scope.cardIndex = 0;
     $scope.currentCard = {};
     $scope.flipped = false;
+    $scope.isComplete = false;
     $scope.progress = {complete: 0, wrong: 0, correct: 0, deckSize: 0};
 
     Deck.selectDeck($routeParams.deckId).then(function(res){
@@ -23,12 +24,11 @@
       //assign new card to the next card in index
       $scope.currentCard = $scope.deck.cards[$scope.cardIndex];
       //check if end has been reached
-      if(!$scope.currentCard) { $scope.currentCard = 'End reached!';}
+      if(!$scope.currentCard) {$scope.isComplete = true;}
     };
 
 
     $scope.thumbs = function(direction){
-      console.log(direction);
       if(direction === 'up'){
         $scope.progress.correct++;
       }else{
