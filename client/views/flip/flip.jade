@@ -5,13 +5,17 @@
     .customButton#shuffle Shuffle
 
 .wrap(ng-hide='isComplete')
-  #questionCard(ng-hide='flipped', ng-click='flipCard()')
-      #question {{currentCard.question}}
-    //Need to take next card out 
-  #answerCard(ng-show='flipped')
-      #answer {{currentCard.answer}}
-      i.fa.fa-thumbs-up.fa-4x.thumbs-up(ng-click='thumbs("up")')
-      i.fa.fa-thumbs-down.fa-4x.thumbs-down(ng-click='thumbs("down")') 
+  .flip
+    .flashCard(ng-class='{"flipped":flipped}', ng-click='flipCard()')
+      //question
+      .face.front
+        #question {{currentCard.question}}
+
+      //answer
+      .face.back
+        #answer {{currentCard.answer}}
+        i.fa.fa-thumbs-up.fa-3x.thumbs-up(ng-click='thumbs("up"); flipCard()')
+        i.fa.fa-thumbs-down.fa-3x.thumbs-down(ng-click='thumbs("down"); flipCard()') 
 
 .wrap#done(ng-show='isComplete')
       p How'd you do?

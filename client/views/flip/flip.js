@@ -4,7 +4,6 @@
   var flip = angular.module('knipit');
 
   flip.controller('FlipCtrl', ['$scope', '$routeParams', 'Deck', function($scope, $routeParams, Deck){
-    $scope.title = 'FLIP IT YO';
     $scope.deck = {};
     $scope.cardIndex = 0;
     $scope.currentCard = {};
@@ -29,6 +28,7 @@
 
 
     $scope.thumbs = function(direction){
+      $scope.flipped = false;
       if(direction === 'up'){
         $scope.progress.correct++;
       }else{
@@ -36,12 +36,11 @@
       }
 
       $scope.progress.complete++;
-      $scope.nextCard();
-      $scope.flipped = false;
+      $scope.nextCard(); //Go to next question
     };
 
     $scope.flipCard = function(){
-      $scope.flipped = true;
+      $scope.flipped = !$scope.flipped;
     };
 
 

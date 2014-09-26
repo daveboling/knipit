@@ -4,7 +4,7 @@
 @WHITE: #FFFFFF;
 @RED: #FF4136;
 
-#answerCard, #questionCard, #done {
+.flashCard, #done {
   min-width: 300px;
   min-height: 300px;
   margin-top: 20px;
@@ -18,9 +18,9 @@
 
   &:hover {
     cursor: pointer;
-    border: 4px solid black;
   }
 }
+
 
 #card-top {
   min-height: 200px;
@@ -43,4 +43,47 @@
   color: red;
 }
 
+
+.flip {
+  -webkit-perspective: 800;
+  min-width: 300px;
+  min-height: 300px;
+  position: relative;
+  margin: 50px auto;
+}
+
+.flip .flashCard.flipped {
+  -webkit-transform: rotatex(-180deg);
+}
+
+.flip .flashCard {
+  width: 100%;
+  height: 100%;
+  -webkit-transform-style: preserve-3d;
+  -webkit-transition: 0.5s;
+}    
+
+.flip .flashCard .face {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  -webkit-backface-visibility: hidden;
+  z-index: 2;
+  text-align: center;
+  line-height: 200px;
+}
+
+.flip .flashCard .front {
+  position: absolute;
+  z-index: 1;
+}
+
+.flip .flashCard .back {
+  -webkit-transform: rotatex(-180deg);
+}
+
+//quickly removes the answer to the next question cleanly
+.flip .flashCard.flipped-remove #answer {
+  color: white;
+}
 
