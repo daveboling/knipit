@@ -3,7 +3,16 @@
 var bcrypt = require('bcrypt'),
     Mongo  = require('mongodb');
 
-function User(){
+function User(o){
+  this.username      = o.username;
+  this.password      = bcrypt.hashSync(o.password, 10);
+  this.email         = o.email;
+
+  this.wins          = 0;
+  this.losses        = 0;
+  this.slayings      = 0;
+  this.rating        = {up: 0, down: 0};
+  this.overallRating = 0;
 }
 
 Object.defineProperty(User, 'collection', {
@@ -18,8 +27,8 @@ User.findById = function(id, cb){
 User.register = function(o, cb){
   User.collection.findOne({email:o.email}, function(err, user){
     if(user || o.password.length < 3){return cb();}
-    o.password = bcrypt.hashSync(o.password, 10);
-    User.collection.save(o, cb);
+    var u = new User(o);
+    User.collection.save(u, cb);
   });
 };
 

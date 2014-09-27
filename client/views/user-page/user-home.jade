@@ -42,8 +42,9 @@
                 .subCategory {{deck.subCategory || 'No sub-category yet..'}}
                 .numCards {{deck.cards.length + ' cards' || 'No cards yet...'}}
               .col-xs-6
-                .deckRating {{'Rating:' + (deck.rating || 0) + '%'}}
-                .deckProgress {{'Progress:' + (deck.progress || 0) + '%'}}
+                .deckRating: i.fa.fa-thumbs-up{{deck.rating.up}}
+                .deckRating: i.fa.fa-thumbs-down{{deck.rating.down}}
+                .deckProgress {{'Progress:' + (deck.report || 0) + '%'}}
 
 
         #challenges
@@ -60,4 +61,3 @@
               .sub-category Sub-Category: Smash Bros.
               button.btn.btn-danger Accept
               button.btn.btn-danger Decline
-

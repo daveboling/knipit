@@ -10,7 +10,8 @@ function Deck(o, ownerId){
 
   //each deck starts with 0 cards
   this.cards    = [];
-  this.progress = 0; //to be used as a progress report
+  this.rating   = {up: 0, down: 0};
+  this.progress = {complete: 0, wrong: 0, correct: 0, deckSize: 0}; //to be used as a progress report
 
 }
 
@@ -30,7 +31,12 @@ Deck.create = function(deck, userId, cb){
 
 Deck.findAllByUserId = function(userId, cb){
   var _id = Mongo.ObjectID(userId);
-  Deck.collection.find({ownerId: _id}).toArray(cb);
+  Deck.collection.find({ownerId: _id}).toArray(function(err, decks){
+    decks.forEach(function(deck, index){
+      decks[index].report = deckReport(deck.progress);
+    });
+    cb(err, decks);
+  });
 };
 
 Deck.saveChanges = function(deck, cb){
@@ -46,3 +52,9 @@ Deck.saveChanges = function(deck, cb){
 
 
 module.exports = Deck;
+
+//HELPER FUNCTIONS
+function deckReport(progress){
+  return Math.round((progress.correct / progress.deckSize) * 100);
+}
+
