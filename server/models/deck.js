@@ -1,7 +1,7 @@
 'use strict';
 
-var Mongo = require('mongodb');
-    //_     = require('underscore');
+var Mongo = require('mongodb'),
+    _     = require('underscore');
 
 function Deck(o, ownerId){
   this.name     = o.name;
@@ -46,6 +46,14 @@ Deck.saveChanges = function(deck, cb){
   Deck.collection.save(deck, cb);
 };
 
+Deck.quiz = function(deckId ,cb){
+  Deck.findById(deckId, function(err, deck){
+    if(!deck.cards){return cb(err, deck);}
+    deck.cards = createQuiz(deck.cards);
+    cb(err, deck);
+  });
+};
+
 //Deck.findAll - for public display
 
 //Deck.copy
@@ -56,5 +64,78 @@ module.exports = Deck;
 //HELPER FUNCTIONS
 function deckReport(progress){
   return Math.round((progress.correct / progress.deckSize) * 100);
+}
+
+function createQuiz(cards){
+  var question = {},
+      choices = [],
+      quizArray = [],
+      randomCards = [];
+
+  //STEP 1
+
+  //CREATE MULTIPLE CHOICES AT RANDOM
+  cards.forEach(function(card, index){
+    //question is equal to the current question getting multiple choices
+    question = card;
+
+    //shuffle them up really nicely
+    randomCards = shuffle(cards);
+
+    //grab 4 random cards
+    for(var i = 0; i < 4; i++){
+      //this is just in case the deck isn't bigger at least 4 cards
+      if(!randomCards[i]){
+        choices.push('');
+      }else{
+        choices.push(randomCards[i].answer);
+      }
+    }
+
+    //assign choices to given question
+    question.choices = choices;
+
+    //clear choices for next run
+    choices = [];
+
+    //push new questions to the quiz array
+    quizArray.push(question);
+  });
+
+  //STEP 2
+
+  //INTEGRATE A QUESTIONS'S ANSWER
+  quizArray.forEach(function(question, index){
+    var duplicateFound = false;
+
+    //check to make sure the answer isn't already there
+    question.choices.forEach(function(choice){
+      if(question.answer === choice){duplicateFound = true; return;}
+    });
+
+    //check to see if duplicate found and assign
+    if(!duplicateFound){
+      question.choices[0] = question.answer;
+    }
+
+    //reset the duplicateFound flag
+    duplicateFound = false;
+
+    //assign reshuffled questions to quizArray!
+    quizArray[index].choices = shuffle(question.choices);
+  });
+
+  //STEP 3
+
+  return quizArray;
+}
+
+function shuffle(cards){
+  var newDeck = [];
+  //make it a good shuffle, shall we?
+  for(var i = 0; i < 3; i++){
+    newDeck = _.shuffle(cards);
+  }
+  return newDeck;
 }
 

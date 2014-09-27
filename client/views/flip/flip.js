@@ -74,8 +74,6 @@
       $location.path('/user-home');
     };
 
-
-
     //HELPER FUNCTIONS
 
     //reset card session for when user is in middle of game
@@ -85,8 +83,5 @@
       $scope.progress = {complete: 0, wrong: 0, correct: 0, deckSize: $scope.deck.cards.length};
     }
 
-
-
   }]);
-
 })();

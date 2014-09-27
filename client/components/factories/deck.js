@@ -15,6 +15,7 @@
     }
 
     //select deck for edit mode
+    //also handles flip mode
     function selectDeck(deckId){
       return $http.get('/deck/'+deckId+'/view');
     }
@@ -22,6 +23,11 @@
     //save changes made from edit mode, deck sent is already an object
     function save(deck){
       return $http.post('/deck/save', deck);
+    }
+
+    //quiz mode
+    function quiz(deckId){
+      return $http.get('/quiz/'+deckId);
     }
 
     //delete deck
@@ -47,6 +53,7 @@
     return {createDeck: createDeck,
               getDecks: getDecks,
             selectDeck: selectDeck,
+                  quiz: quiz,
                   save: save,
       removeEmptyCards: removeEmptyCards
           };

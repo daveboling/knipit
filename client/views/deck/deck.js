@@ -43,6 +43,10 @@
       $location.path('/flip/' + $scope.deck._id);
     };
 
+    $scope.quiz = function(){
+      $location.path('/quiz/' + $scope.deck._id);
+    };
+
   }]);
 
 })();

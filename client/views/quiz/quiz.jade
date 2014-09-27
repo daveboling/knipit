@@ -1,0 +1,32 @@
+.row#card-top
+  .wrap(ng-hide='isComplete')
+    #progress Progress: {{(progress.complete / progress.deckSize * 100) | number:0}}%
+    .customButton(data-toggle="modal" data-target="#shuffleConfirm") Shuffle
+
+
+.wrap(ng-hide='isComplete')
+  #quizQuestion 
+
+    .q {{cardIndex + 1}}. {{currentCard.question}}
+
+    .choice(ng-click='answer(currentCard.choices[0])') {{currentCard.choices[0]}}
+    .choice(ng-click='answer(currentCard.choices[1])') {{currentCard.choices[1]}}
+    .choice(ng-click='answer(currentCard.choices[2])') {{currentCard.choices[2]}}
+    .choice(ng-click='answer(currentCard.choices[3])') {{currentCard.choices[3]}}
+
+.wrap#done(ng-show='isComplete')
+      p How'd you do?
+      #correct Correct: {{progress.correct}} 
+      #wrong Wrong: {{progress.wrong}}
+      .customButton(ng-click='again()') Again?
+      .customButton(ng-click='goToDashboard()') Back to Dashboard
+
+
+//shuffle Confirmation
+.modal.fade#shuffleConfirm(tabindex='-1', role='dialog', aria-labelledby='shuffleModal', aria-hidden='true')
+    .modal-dialog.modal-lg
+        .modal-content
+          .shuffleConfirmation Shuffling the deck will reset your progress. Is that OK?
+            .customButton#shuffle(ng-click='shuffle()' data-toggle='modal' data-target="#shuffleConfirm") Yes
+            .customButton#shuffle(data-toggle='modal' data-target="#shuffleConfirm") No
+

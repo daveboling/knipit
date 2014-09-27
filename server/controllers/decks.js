@@ -21,8 +21,15 @@ exports.select = function(req, res){
   });
 };
 
+exports.quiz = function(req, res){
+  Deck.quiz(req.params.deckId, function(err, deck){
+    res.send({deck: deck});
+  });
+};
+
 exports.saveChanges = function(req, res){
   Deck.saveChanges(req.body, function(err, deck){
     res.send({deck: deck});
   });
 };
+
