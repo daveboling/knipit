@@ -43,6 +43,24 @@
       $scope.flipped = !$scope.flipped;
     };
 
+    $scope.shuffle = function(){
+      console.log('shuffled');
+
+      //shuffle array
+      $scope.deck.cards = _.shuffle($scope.deck.cards);
+
+      resetSession();
+    };
+
+    //HELPER FUNCTIONS
+
+    //reset card session for when user is in middle of game
+    function resetSession(){
+      $scope.cardIndex = 0;
+      $scope.currentCard = $scope.deck.cards[$scope.cardIndex];
+      $scope.progress = {complete: 0, wrong: 0, correct: 0, deckSize: $scope.deck.cards.length};
+    }
+
 
   }]);
 

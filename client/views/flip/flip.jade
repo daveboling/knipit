@@ -2,7 +2,7 @@
 .row#card-top
   .wrap
     #progress Progress: {{(progress.complete / progress.deckSize * 100) + '%' }}
-    .customButton#shuffle Shuffle
+    .customButton#shuffle(ng-click='shuffle()') Shuffle
 
 .wrap(ng-hide='isComplete')
   .flip
