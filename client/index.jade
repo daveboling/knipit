@@ -12,7 +12,7 @@ html(ng-app='knipit', lang='en')
     link(href='/views/flip/flip.css', rel='stylesheet')
     link(href='/views/quiz/quiz.css', rel='stylesheet')
     link(href='/vendor/animate.css/animate.css', rel='stylesheet')
-  body
+  body(ng-controller='AppCtrl')
     include nav
     .container-fluid
       .row
@@ -30,6 +30,7 @@ html(ng-app='knipit', lang='en')
     script(src='/vendor/angular-localforage/dist/angular-localForage.js')
     script(src='/config/toastr.js')
     script(src='/index.js')
+    script(src='/appController.js')
     script(src='/nav.js')
     script(src='/views/home/home.js')
     script(src='/views/register/register.js')

@@ -27,6 +27,9 @@ module.exports = function(app, express){
   app.post('/register', users.register);
   app.post('/login', users.login);
 
+  //session check
+  app.get('/checkSession', users.checkSession);
+
   //logged in users
   app.use(security.bounce);
   app.delete('/logout', users.logout);
