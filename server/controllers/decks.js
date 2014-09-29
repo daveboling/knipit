@@ -33,3 +33,10 @@ exports.saveChanges = function(req, res){
   });
 };
 
+exports.search = function(req, res){
+  Deck.search(req.query, function(err, results){
+    console.log(results);
+    res.send({results: results});
+  });
+};
+

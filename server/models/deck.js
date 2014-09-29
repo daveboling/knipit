@@ -54,7 +54,9 @@ Deck.quiz = function(deckId ,cb){
   });
 };
 
-//Deck.findAll - for public display
+Deck.search = function(query, cb){
+  Deck.collection.find({name: {$regex: '.*'+query.query+'.*', $options: 'i'}}).toArray(cb);
+};
 
 //Deck.copy
 

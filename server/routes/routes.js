@@ -40,6 +40,7 @@ module.exports = function(app, express){
   app.get('/deck/:deckId/view', decks.select);
   app.get('/quiz/:deckId', decks.quiz);
   app.post('/deck/save', decks.saveChanges);
+  app.get('/searchDecks', decks.search);
   //app.delete(DELETE DECK)
 
   console.log('Express: Routes Loaded');

@@ -14,6 +14,7 @@
 
     Deck.selectDeck($routeParams.deckId).then(function(res){
       $scope.deck = res.data.deck;
+      $scope.isOwner = Deck.checkIfOwner($scope.deck.ownerId, $scope.currentUser._id);
       $scope.currentCard = $scope.deck.cards[$scope.cardIndex];
       $scope.progress.deckSize = $scope.deck.cards.length;
     });
@@ -21,9 +22,13 @@
     $scope.$on('complete', function(){
       //save progress
       $scope.deck.progress = $scope.progress;
-      Deck.save($scope.deck).then(function(res){
-        toastr.success('Your progress has been updated!');
-      });
+      if($scope.isOwner){
+        Deck.save($scope.deck).then(function(res){
+          toastr.success('Your progress has been updated!');
+        });
+      }else{
+          toastr.success('Feelin\' froggy? Why not send a challenge?');
+      }
     });
 
     $scope.nextCard = function(){

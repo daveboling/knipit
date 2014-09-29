@@ -30,6 +30,10 @@
       return $http.get('/quiz/'+deckId);
     }
 
+    function searchDecks(query, category){
+      return $http.get('/searchDecks/?query='+query+'&category='+category);
+    }
+
 
     //delete deck
     //flip deck
@@ -51,12 +55,25 @@
       return _.compact(newCards);
     }
 
-    return {createDeck: createDeck,
-              getDecks: getDecks,
-            selectDeck: selectDeck,
-                  quiz: quiz,
-                  save: save,
-      removeEmptyCards: removeEmptyCards
+
+    function checkIfOwner(deckId, userId){
+      if(deckId !== userId) {
+        return false;
+      }else{
+        return true;
+      }
+    }
+
+
+    return {
+            createDeck:       createDeck,
+            getDecks:         getDecks,
+            selectDeck:       selectDeck,
+            quiz:             quiz,
+            save:             save,
+            removeEmptyCards: removeEmptyCards,
+            searchDecks:      searchDecks,
+            checkIfOwner:     checkIfOwner
           };
   }]);
 

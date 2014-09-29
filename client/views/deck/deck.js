@@ -10,6 +10,9 @@
     //inital deck load
     Deck.selectDeck($routeParams.deckId).then(function(res){
       $scope.deck = res.data.deck;
+
+      //check if the owner is viewing their own deck
+      $scope.isOwner = Deck.checkIfOwner($scope.deck.ownerId, $scope.currentUser._id);
     });
 
     $scope.editDeck = function(){

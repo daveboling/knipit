@@ -20,14 +20,14 @@
       .col-sm-6.answer 
         .viewMode(ng-hide='editMode') {{card.answer}}
         textarea(ng-value='card.answer || ""', ng-model='deck.cards[$index].answer' ng-show='editMode', ng-keydown='enterAddCard($event, $last)')
-      .col-sm-1.controls
+      .col-sm-1.controls(ng-show='isOwner')
         i.fa.fa-times
         i.fa.fa-pencil-square-o
     .row.short-stuff
       .col-xs-12
-        button.btn.btn-success.full#addCard(type='button' ng-show='editMode' ng-click='addCard()') Add Card 
-    .row.big-stuff
+        button.btn.btn-success.full#addCard(type='button' ng-show='editMode' ng-click='addCard()') Add Card
+    .row.big-stuff(ng-show='isOwner')
         .col-xs-12
-        button.btn.btn-danger.full(type='button' ng-hide='editMode' ng-click='editDeck()') Add or Remove 
+        button.btn.btn-danger.full(type='button' ng-hide='editMode' ng-click='editDeck()') Add or Remove
         button.btn.btn-success.full(type='button' ng-show='editMode' ng-click='saveDeck()') Save
 

@@ -1,1 +1,17 @@
-h2 {{title}}
+
+.wrap
+  #searchBar
+    form(novalidate name='searchForm')
+      input(type='text' name='query' ng-model='search.query' required)
+      select
+        include ../partials/categories.jade
+      button.btn.btn-success(ng-click='search()') Search
+
+
+.wrap
+  #searchResults
+    .result(ng-repeat='result in results' ng-click='viewPublicDeck(result._id)')
+      .deckName {{result.name}}
+      .deckNumCards Deck Size: {{result.cards.length}}
+      .deckRatingsUp: i.fa.fa-thumbs-up {{result.rating.up}}
+      .deckRatingsDown: i.fa.fa-thumbs-down {{result.rating.down}}
