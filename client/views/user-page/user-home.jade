@@ -47,15 +47,9 @@
 
         #challenges
             h3 Challenges
-            .challenge
+            .challenge(ng-repeat='challenge in challenges')
               .user ToddMan12
               .category Category: Programming
               .sub-category Sub-Category: AngularJS
-              button.btn.btn-danger Accept
-              button.btn.btn-danger Decline
-            .challenge
-              .user Avo
-              .category Category: Video Games
-              .sub-category Sub-Category: Smash Bros.
               button.btn.btn-danger Accept
               button.btn.btn-danger Decline

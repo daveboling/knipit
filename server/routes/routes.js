@@ -9,7 +9,8 @@ var morgan         = require('morgan'),
     security       = require('../lib/security'),
     home           = require('../controllers/home'),
     users          = require('../controllers/users'),
-    decks          = require('../controllers/decks');
+    decks          = require('../controllers/decks'),
+    challenges     = require('../controllers/challenges');
 
 module.exports = function(app, express){
   app.use(morgan('dev'));
@@ -33,6 +34,7 @@ module.exports = function(app, express){
   //logged in users
   app.use(security.bounce);
   app.delete('/logout', users.logout);
+  app.get('/getOwner/:ownerId', users.getOwner);
 
   //deck routes
   app.post('/deck/create', decks.new);
@@ -41,7 +43,9 @@ module.exports = function(app, express){
   app.get('/quiz/:deckId', decks.quiz);
   app.post('/deck/save', decks.saveChanges);
   app.get('/searchDecks', decks.search);
-  //app.delete(DELETE DECK)
+
+  //challenge routes
+  app.post('/challenge/new', challenges.new);
 
   console.log('Express: Routes Loaded');
 };

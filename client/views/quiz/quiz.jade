@@ -1,8 +1,4 @@
-.row#card-top
-  .wrap(ng-hide='isComplete')
-    #progress Progress: {{(progress.complete / progress.deckSize * 100) | number:0}}%
-    .customButton(data-toggle="modal" data-target="#shuffleConfirm") Shuffle
-
+include ../partials/card-top.jade
 
 .wrap(ng-hide='isComplete')
   #quizQuestion 

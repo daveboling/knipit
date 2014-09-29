@@ -4,10 +4,13 @@
       #deck-name {{deck.name}}
       #deck-category Category: {{deck.category}}
       #deck-subcategory Sub-Category: {{deck.subCategory || 'None...'}}
+      #deck-rating-up: i.fa.fa-thumbs-up {{deck.rating.up}}
+      #deck-rating-down: i.fa.fa-thumbs-down {{deck.rating.down}}
+      #deck-owner-username Owner: {{deck.owner.username}}
     .col-sm-6
       button.btn.btn-primary.action(type='button' ng-click='flip()') Flip cards
       button.btn.btn-primary.action(type='button' ng-click='quiz()') Take a test
-      button.btn.btn-primary.action(type='button') Issue a challenge
+      button.btn.btn-primary.action(ng-hide='isOwner' type='button' ng-click='issueChallenge()') Challenge Deck
 
 .row#deckWrapper
   //View Mode

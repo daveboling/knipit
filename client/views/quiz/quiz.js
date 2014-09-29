@@ -21,7 +21,6 @@
     $scope.$on('complete', function(){
       //save progress
       $scope.deck.progress = $scope.progress;
-      console.log($scope.isOwner);
       if($scope.isOwner){
         Deck.save($scope.deck).then(function(res){
           toastr.success('Your progress has been updated!');

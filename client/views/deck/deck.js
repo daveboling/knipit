@@ -3,13 +3,18 @@
 
   var deck = angular.module('knipit');
 
-  deck.controller('DeckCtrl', ['$scope', '$routeParams', '$location', 'Deck', function($scope, $routeParams, $location, Deck){
+  deck.controller('DeckCtrl', ['$scope', '$routeParams', '$location', 'Deck', 'User', function($scope, $routeParams, $location, Deck, User){
     $scope.editMode = false;
     $scope.deck = {};
 
     //inital deck load
     Deck.selectDeck($routeParams.deckId).then(function(res){
       $scope.deck = res.data.deck;
+
+      //opted not to do this server side, at least for the time being
+      User.getOwner($scope.deck.ownerId).then(function(res){
+        $scope.deck.owner = res.data.owner;
+      });
 
       //check if the owner is viewing their own deck
       $scope.isOwner = Deck.checkIfOwner($scope.deck.ownerId, $scope.currentUser._id);
@@ -48,6 +53,12 @@
 
     $scope.quiz = function(){
       $location.path('/quiz/' + $scope.deck._id);
+    };
+
+    $scope.issueChallenge = function(){
+      Deck.challenge($scope.deck.ownerId, $scope.currentUser._id, $scope.deck._id).then(function(res){
+        toastr.success($scope.deck.owner.username+' has been challenged!');
+      });
     };
 
   }]);

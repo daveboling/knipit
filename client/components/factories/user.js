@@ -20,8 +20,12 @@
       return $http.get('/checkSession');
     }
 
+    function getOwner(ownerId){
+      return $http.get('/getOwner/'+ownerId);
+    }
 
-    return {register:register, login:login, logout:logout, checkSession: checkSession};
+
+    return {register:register, login:login, logout:logout, checkSession: checkSession, getOwner: getOwner};
   }]);
 })();
 

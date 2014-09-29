@@ -39,11 +39,20 @@ exports.logout = function(req, res){
 
 exports.checkSession = function(req, res){
   if(req.user){
-    res.send({user: req.user});
+    var userData = req.user;
+    delete userData.password;
+    res.send({user: userData});
   }else{
     //will remain anonymous until refresh
     //this is handled client side
     res.send({user: {username: 'Anonymous'}});
   }
+};
+
+exports.getOwner = function(req, res){
+  User.findById(req.params.ownerId, function(err, user){
+    delete user.password;
+    res.send({owner: user});
+  });
 };
 

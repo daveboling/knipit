@@ -30,14 +30,15 @@
       return $http.get('/quiz/'+deckId);
     }
 
+    //public deck search
     function searchDecks(query, category){
       return $http.get('/searchDecks/?query='+query+'&category='+category);
     }
 
-
-    //delete deck
-    //flip deck
-    //edit deck
+    //issue challenge!
+    function challenge(ownerId, currentUserId, deckId){
+      return $http.post('/challenge/new', {receiverId: ownerId, senderId: currentUserId, deckId: deckId});
+    }
 
 
     //HELPER FUNCTIONS
@@ -73,7 +74,8 @@
             save:             save,
             removeEmptyCards: removeEmptyCards,
             searchDecks:      searchDecks,
-            checkIfOwner:     checkIfOwner
+            checkIfOwner:     checkIfOwner,
+            challenge:        challenge
           };
   }]);
 
