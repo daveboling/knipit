@@ -19,12 +19,13 @@
                       option(value='Science') Science
                     .customButton(ng-click='createDeck()') Create
             .col-sm-2
-              .victories Victories: 2
-              .losses Losses: 5
-              .slayer-points Slayings: 5
+              .victories Victories: {{currentUser.wins}}
+              .losses Losses: {{currentUser.losses}}
             .col-sm-2
-              .overall Overall Rating: 95%
-              .player-rating Player Rating: 98%
+              .overall Overall Rating: {{currentUser.overallRating}}
+              .player-rating Ratings:
+                i.fa.fa-thumbs-up{{currentUser.rating.up}}
+                i.fa.fa-thumbs-down{{currentUser.rating.down}}
         #yourDecks
           form(novalidate)
             label Sort By Category
