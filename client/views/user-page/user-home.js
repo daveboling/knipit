@@ -5,10 +5,12 @@
 
   //CONTROLLER
   userHome.controller('UserHomeCtrl', ['$scope', '$location', 'Deck', 'Challenge', function($scope, $location, Deck, Challenge){
-    $scope.title      = 'User-Page';
-    $scope.deck       = {};
-    $scope.decks      = [];
-    $scope.challenges = [];
+    $scope.title              = 'User-Page';
+    $scope.deck               = {};
+    $scope.decks              = [];
+    $scope.challenges         = [];
+    $scope.sendChallenges     = [];
+    $scope.receivedChallenges = [];
 
 
     function fail(){
@@ -21,10 +23,14 @@
     }, fail);
 
     //Display list of current challenges
-    Challenge.getChallenges().then(function(res){
-      console.log(res.data);
-      $scope.challenges = res.data.challenges;
-    });
+    $scope.getChallenges = function(){
+      Challenge.getChallenges().then(function(res){
+        $scope.challenges = res.data.challenges;
+      });
+    };
+
+    //initial page load
+    $scope.getChallenges();
 
     //create a new deck and return the newly created deck w/ deck id
     $scope.createDeck = function(){
@@ -37,6 +43,20 @@
 
     $scope.selectDeck = function(deckId){
       $location.path('/deck/'+deckId+'/view');
+    };
+
+    $scope.accept = function(deckId){
+      Challenge.acceptChallenge(deckId).then(function(res){
+        toastr.success('Challenged accepted.');
+        $scope.getChallenges();
+      });
+    };
+
+    $scope.decline = function(deckId){
+      Challenge.declineChallenge(deckId).then(function(res){
+        toastr.success('Challenge declined.');
+        $scope.getChallenges();
+      });
     };
 
   }]);

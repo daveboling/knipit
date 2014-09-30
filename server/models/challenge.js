@@ -11,14 +11,15 @@ function Challenge(o){
   this.deckId        = Mongo.ObjectID(o.deckId);
 
   //scoring
-  this.senderScore   = 0;
-  this.receiverScore = 0;
+  this.challengerScore   = o.challengerScore;
+  this.receiverScore     = 0;
 
   //flag for if receiver accepts/declines
   this.hasAccepted   = false;
 
   //check if completed
-  this.isComplete    = false;
+  this.senderComplete   = false;
+  this.receiverComplete = false;
 }
 
 Object.defineProperty(Challenge, 'collection', {
@@ -32,7 +33,13 @@ Challenge.findById = function(deckId, cb){
 };
 
 Challenge.create = function(info, cb){
+  var score  = info.challengerScore;
 
+  //may be ineffecient to do it this way, but it's needed
+  //checking for duplicate object is turning this into MongoID
+  delete info.challengerScore;
+
+  //remaing keys for MongoID
   var keys = Object.keys(info);
 
   //recast into Mongo Object IDs
@@ -45,6 +52,7 @@ Challenge.create = function(info, cb){
     //if it already exists, disallow creation of new challenge
     if(challenge) { return cb();}
     var c = new Challenge(info);
+    c.challengerScore = score;
     Challenge.collection.save(c, cb);
   });
 };
@@ -77,6 +85,20 @@ Challenge.all = function(userId, cb){
     });
   });
 };
+
+Challenge.accept = function(challengeId, cb){
+  Challenge.findById(challengeId, function(err, challenge){
+    challenge.hasAccepted = true;
+    Challenge.collection.save(challenge, cb);
+  });
+};
+
+Challenge.decline = function(challengeId, cb){
+  var _id = Mongo.ObjectID(challengeId);
+  Challenge.collection.remove({_id: _id}, cb);
+};
+
+
 
 module.exports = Challenge;
 

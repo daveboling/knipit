@@ -11,9 +11,27 @@
     }
 
     //accept challenge
+    function acceptChallenge(challengeId){
+      return $http.post('/challenge/accept/'+challengeId);
+    }
 
     //decline challenge
+    function declineChallenge(challengeId){
+      return $http.delete('/challenge/decline/'+challengeId);
+    }
+    //complete challenge (save)
 
-    return {getChallenges: getChallenges};
+    //HELPER FUNCTIONS
+    function calcScore(progress){
+      return (progress.correct * 5) + progress.timeScore;
+    }
+
+
+    return {
+      getChallenges:    getChallenges,
+      acceptChallenge:  acceptChallenge,
+      declineChallenge: declineChallenge,
+      calcScore:        calcScore
+    };
   }]);
 })();

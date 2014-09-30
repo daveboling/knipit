@@ -55,11 +55,10 @@
       $location.path('/quiz/' + $scope.deck._id);
     };
 
-    $scope.issueChallenge = function(){
-      Deck.challenge($scope.deck.ownerId, $scope.currentUser._id, $scope.deck._id).then(function(res){
-        toastr.success($scope.deck.owner.username+' has been challenged!');
-      });
+    $scope.challengeMode = function(){
+      $location.path('/challenge/' + $scope.deck._id);
     };
+
 
   }]);
 

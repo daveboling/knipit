@@ -15,3 +15,17 @@ exports.getChallenges = function(req, res){
     res.send({challenges: challenges});
   });
 };
+
+exports.accept = function(req, res){
+  Challenge.accept(req.params.challengeId, function(err, challenges){
+    res.status(200).end();
+  });
+};
+
+exports.decline = function(req, res){
+  Challenge.decline(req.params.challengeId, function(err, challenge){
+    res.status(200).end();
+  });
+};
+
+

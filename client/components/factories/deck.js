@@ -36,10 +36,9 @@
     }
 
     //issue challenge!
-    function challenge(ownerId, currentUserId, deckId){
-      return $http.post('/challenge/new', {receiverId: ownerId, senderId: currentUserId, deckId: deckId});
+    function challenge(ownerId, currentUserId, deckId, challengerScore){
+      return $http.post('/challenge/new', {receiverId: ownerId, senderId: currentUserId, deckId: deckId, challengerScore: challengerScore});
     }
-
 
     //HELPER FUNCTIONS
     function removeEmptyCards(cards){
@@ -55,7 +54,6 @@
       //return array without falsy values
       return _.compact(newCards);
     }
-
 
     function checkIfOwner(deckId, userId){
       if(deckId !== userId) {

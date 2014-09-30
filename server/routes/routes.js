@@ -47,6 +47,8 @@ module.exports = function(app, express){
   //challenge routes
   app.post('/challenge/new', challenges.new);
   app.get('/challenges/all', challenges.getChallenges);
+  app.post('/challenge/accept/:challengeId', challenges.accept);
+  app.delete('/challenge/decline/:challengeId', challenges.decline);
 
   console.log('Express: Routes Loaded');
 };

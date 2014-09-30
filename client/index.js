@@ -20,6 +20,7 @@
     .when('/deck/:deckId/view', {templateUrl:'/views/deck/deck.html', controller:'DeckCtrl'})
     .when('/flip/:deckId', {templateUrl:'/views/flip/flip.html', controller:'FlipCtrl'})
     .when('/quiz/:deckId', {templateUrl:'/views/quiz/quiz.html', controller:'QuizCtrl'})
+    .when('/challenge/:deckId', {templateUrl:'/views/challenge-mode/chal-mode.html', controller:'ChallengeCtrl'})
     .when('/browse', {templateUrl:'/views/browse/browse.html', controller:'BrowseCtrl'})
     .otherwise({redirectTo:'/'});
 

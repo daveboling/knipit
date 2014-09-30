@@ -7,6 +7,6 @@
     .challengeStatus
       .pendingApproval(ng-hide='challenge.hasAccepted') Status: Pending
       .hasAccepted(ng-show='challenge.hasAccepted') Accepted
-    button.btn.btn-danger(ng-hide='currentUser._id === challenge.senderId' ng-click='acceptChallenge()') Accept
-    button.btn.btn-danger(ng-hide='currentUser._id === challenge.senderId' ng-click='declineChallenge()') Decline
-    button.btn.btn-danger(ng-show='challenge.hasAccepted' ng-click='declineChallenge()') Play
+    button.btn.btn-danger(ng-hide='currentUser._id === challenge.senderId || challenge.hasAccepted' ng-click='accept(challenge._id)') Accept
+    button.btn.btn-danger(ng-hide='currentUser._id === challenge.senderId || challenge.hasAccepted' ng-click='decline(challenge._id)') Decline
+    button.btn.btn-danger(ng-show='challenge.hasAccepted' ng-click='play(challenge)') Play

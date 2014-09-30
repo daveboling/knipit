@@ -1,0 +1,21 @@
+include ../partials/card-top.jade
+
+#timer(ng-hide='isComplete') 
+  p(ng-class='{redTimer: redZone}') {{timer}}
+
+.wrap(ng-hide='isComplete')
+  #quizQuestion
+
+    .q {{cardIndex + 1}}. {{currentCard.question}}
+
+    .choice(ng-click='answer(currentCard.choices[0])') {{currentCard.choices[0]}}
+    .choice(ng-click='answer(currentCard.choices[1])') {{currentCard.choices[1]}}
+    .choice(ng-click='answer(currentCard.choices[2])') {{currentCard.choices[2]}}
+    .choice(ng-click='answer(currentCard.choices[3])') {{currentCard.choices[3]}}
+
+.wrap#done(ng-show='isComplete')
+      p How'd you do?
+      #correct Correct: {{progress.correct}} 
+      #wrong Wrong: {{progress.wrong}}
+      #overallScore Score: {{overallScore}}
+      .customButton(ng-click='goToDashboard()') Back to Dashboard
