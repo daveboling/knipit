@@ -11,14 +11,7 @@ exports.new = function(req, res){
 
 exports.getChallenges = function(req, res){
   Challenge.all(req.user._id, function(err, challenges){
-    console.log(challenges);
     res.send({challenges: challenges});
-  });
-};
-
-exports.accept = function(req, res){
-  Challenge.accept(req.params.challengeId, function(err, challenges){
-    res.status(200).end();
   });
 };
 

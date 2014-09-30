@@ -3,7 +3,6 @@
 var Deck = require('../models/deck');
 
 exports.new = function(req, res){
-  console.log(req.body);
   Deck.create(req.body, req.user._id, function(err, deck){
     res.send({deck: deck});
   });
@@ -35,7 +34,6 @@ exports.saveChanges = function(req, res){
 
 exports.search = function(req, res){
   Deck.search(req.query, function(err, results){
-    console.log(results);
     res.send({results: results});
   });
 };

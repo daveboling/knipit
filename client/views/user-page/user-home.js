@@ -46,10 +46,8 @@
     };
 
     $scope.accept = function(deckId){
-      Challenge.acceptChallenge(deckId).then(function(res){
-        toastr.success('Challenged accepted.');
-        $scope.getChallenges();
-      });
+      toastr.success('Challenged accepted.');
+      $location.path('/challenge/' + deckId +'/' + false);
     };
 
     $scope.decline = function(deckId){

@@ -9,27 +9,28 @@
     $scope.currentCard  = {};
     $scope.flipped      = false;
     $scope.isComplete   = false;
-    $scope.isChallenger = true;
+    $scope.isChallenger = $routeParams.isChallenger;
     $scope.timer        = 30; //default starting for timer
     $scope.overallScore = 0;
     $scope.progress     = {complete: 0, wrong: 0, correct: 0, deckSize: 0, timeScore: 0};
 
+    console.log($routeParams.isChallenger);
+
     Deck.quiz($routeParams.deckId).then(function(res){
       $scope.deck = res.data.deck;
       $scope.currentCard = $scope.deck.cards[$scope.cardIndex];
-      $scope.isOwner = Deck.checkIfOwner($scope.deck.ownerId, $scope.currentUser._id);
       $scope.progress.deckSize = $scope.deck.cards.length;
     });
 
     $scope.$on('complete', function(){
       $scope.deck.progress = $scope.progress;
       $scope.overallScore = Challenge.calcScore($scope.progress);
-      if($scope.isChallenger){
+      if($scope.isChallenger === 'true'){
         //create the challenge
         $scope.issueChallenge($scope.overallScore);
       }else{
         //finish the challenge
-        console.log('completed');
+        toastr.success('You completed the challenge');
       }
     });
 
@@ -63,13 +64,8 @@
 
     $scope.issueChallenge = function(score){
       Deck.challenge($scope.deck.ownerId, $scope.currentUser._id, $scope.deck._id, score).then(function(res){
-        toastr.success($scope.deck.owner.username+' has been challenged!');
+        toastr.success('Challenge has been sent!');
       });
-    };
-
-    //this may need to be moved elsewhere
-    $scope.takeChallenge = function(){
-      $scope.isChallenger = false;
     };
 
     $scope.goToDashboard = function(){

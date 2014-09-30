@@ -13,13 +13,6 @@ function Challenge(o){
   //scoring
   this.challengerScore   = o.challengerScore;
   this.receiverScore     = 0;
-
-  //flag for if receiver accepts/declines
-  this.hasAccepted   = false;
-
-  //check if completed
-  this.senderComplete   = false;
-  this.receiverComplete = false;
 }
 
 Object.defineProperty(Challenge, 'collection', {
@@ -86,18 +79,10 @@ Challenge.all = function(userId, cb){
   });
 };
 
-Challenge.accept = function(challengeId, cb){
-  Challenge.findById(challengeId, function(err, challenge){
-    challenge.hasAccepted = true;
-    Challenge.collection.save(challenge, cb);
-  });
-};
-
 Challenge.decline = function(challengeId, cb){
   var _id = Mongo.ObjectID(challengeId);
   Challenge.collection.remove({_id: _id}, cb);
 };
-
 
 
 module.exports = Challenge;
