@@ -5,7 +5,7 @@
 
   deck.controller('DeckCtrl', ['$scope', '$routeParams', '$location', 'Deck', 'User', function($scope, $routeParams, $location, Deck, User){
     $scope.editMode = false;
-    $scope.deck = {};
+    $scope.deck     = {};
 
     //inital deck load
     Deck.selectDeck($routeParams.deckId).then(function(res){

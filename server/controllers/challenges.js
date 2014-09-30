@@ -8,3 +8,10 @@ exports.new = function(req, res){
     res.status(200).end();
   });
 };
+
+exports.getChallenges = function(req, res){
+  Challenge.all(req.user._id, function(err, challenges){
+    console.log(challenges);
+    res.send({challenges: challenges});
+  });
+};

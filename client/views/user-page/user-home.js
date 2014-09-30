@@ -4,10 +4,11 @@
   var userHome = angular.module('knipit');
 
   //CONTROLLER
-  userHome.controller('UserHomeCtrl', ['$scope', '$location', 'Deck', function($scope, $location, Deck){
-    $scope.title = 'User-Page';
-    $scope.deck = {};
-    $scope.decks = [];
+  userHome.controller('UserHomeCtrl', ['$scope', '$location', 'Deck', 'Challenge', function($scope, $location, Deck, Challenge){
+    $scope.title      = 'User-Page';
+    $scope.deck       = {};
+    $scope.decks      = [];
+    $scope.challenges = [];
 
 
     function fail(){
@@ -19,6 +20,11 @@
       $scope.decks = res.data.decks || [];
     }, fail);
 
+    //Display list of current challenges
+    Challenge.getChallenges().then(function(res){
+      console.log(res.data);
+      $scope.challenges = res.data.challenges;
+    });
 
     //create a new deck and return the newly created deck w/ deck id
     $scope.createDeck = function(){

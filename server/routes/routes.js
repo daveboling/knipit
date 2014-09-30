@@ -46,6 +46,7 @@ module.exports = function(app, express){
 
   //challenge routes
   app.post('/challenge/new', challenges.new);
+  app.get('/challenges/all', challenges.getChallenges);
 
   console.log('Express: Routes Loaded');
 };

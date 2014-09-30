@@ -1,18 +1,24 @@
 'use strict';
 
-var Mongo = require('mongodb');
+var Mongo    = require('mongodb'),
+    async    = require('async'),
+    User     = require('./user'),
+    Deck     = require('./deck');
 
 function Challenge(o){
-  this.senderId     = o.senderId;
-  this.receiverId   = o.receiverId;
-  this.deckId       = o.deckId;
+  this.senderId      = Mongo.ObjectID(o.senderId);
+  this.receiverId    = Mongo.ObjectID(o.receiverId);
+  this.deckId        = Mongo.ObjectID(o.deckId);
 
   //scoring
   this.senderScore   = 0;
   this.receiverScore = 0;
 
   //flag for if receiver accepts/declines
-  this.hasAccepted = false;
+  this.hasAccepted   = false;
+
+  //check if completed
+  this.isComplete    = false;
 }
 
 Object.defineProperty(Challenge, 'collection', {
@@ -26,16 +32,74 @@ Challenge.findById = function(deckId, cb){
 };
 
 Challenge.create = function(info, cb){
+
+  var keys = Object.keys(info);
+
+  //recast into Mongo Object IDs
+  keys.forEach(function(key){
+    info[key] = Mongo.ObjectID(info[key]);
+  });
+
   //prevent duplicate challenges and overwriting current ones
   Challenge.collection.findOne(info, function(err, challenge){
-    console.log(challenge);
+    //if it already exists, disallow creation of new challenge
     if(challenge) { return cb();}
     var c = new Challenge(info);
     Challenge.collection.save(c, cb);
   });
 };
 
+Challenge.all = function(userId, cb){
+  var _id = Mongo.ObjectID(userId);
+  Challenge.collection.find({$or:[{receiverId: _id},{senderId: _id}]}, {isComplete: false}).toArray(function(err, challenges){
+    //if no challenges, do nothing
+    if(!challenges){ return cb(); }
+
+    //assign current user to challenges for getting user data
+    challenges.forEach(function(c){
+      c.currentUserId = _id;
+    });
+
+    //assign relevant data to challenges
+    async.map(challenges, getPublicUserData, function(err, publicUsers){
+      async.map(challenges, getDeckInfo, function(err, deckInfo){
+
+        //assign info to each index of challenges
+        //publicUsers and deckInfo should mirror the challenges array
+        challenges.forEach(function(c, index){
+          c.user = publicUsers[index];
+          c.deck = deckInfo[index];
+        });
+
+        //callback with information
+        cb(null, challenges);
+      });
+    });
+  });
+};
 
 module.exports = Challenge;
 
 
+////HELPER FUNCTIONS
+function getPublicUserData(challenge, cb){
+  var publicUser = challenge.senderId.toString();
+
+  //check to see who the other user is
+  if(challenge.senderId.toString() === challenge.currentUserId.toString()){
+    publicUser = challenge.receiverId.toString();
+  }
+
+  //find the user and only return the name, because that's all we need.
+  User.findById(publicUser, function(err, user){
+    var username = {username: user.username};
+    cb(null, username);
+  });
+}
+
+function getDeckInfo(challenge, cb){
+  Deck.findById(challenge.deckId.toString(), function(err, deck){
+    var deckInfo = {name: deck.name, category: deck.category};
+    cb(null, deckInfo);
+  });
+}

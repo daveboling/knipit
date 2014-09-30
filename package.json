@@ -25,7 +25,8 @@
     "connect-redis": "~2.1.0",
     "bcrypt": "~0.8.0",
     "chalk": "~0.5.1",
-    "request": "~2.44.0"
+    "request": "~2.44.0",
+    "eachtick": "0.0.6"
   },
   "devDependencies": {
     "grunt": "~0.4.5",
