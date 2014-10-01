@@ -12,6 +12,7 @@ function History(o){
 
   this.receiverScore     = o.receiverScore;
   this.challengerScore   = o.challengerScore;
+  this.winner            = o.winner;
   this.date              = new Date();
 }
 

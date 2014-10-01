@@ -88,10 +88,10 @@ Challenge.decline = function(challengeId, cb){
 Challenge.complete = function(challengeId, score, cb){
   Challenge.findById(challengeId, function(err1, challenge){
     challenge.receiverScore = score;
-    Challenge.calcWinner(challenge, function(err2, username){
+    Challenge.calcWinner(challenge, function(username){
       challenge.winner = username;
-      console.log(username);
-      History.create(challenge, function(err3){
+      History.create(challenge, function(err2){
+        //quick way to remove a challenge, not very semantic
         Challenge.decline(challengeId, cb);
       });
     });
@@ -108,13 +108,13 @@ Challenge.calcWinner = function(challenge, cb){
   }
   else {
     User.addDraw(challenge.receiverId, challenge.senderId, function(err){
-      cb('Draw game!');
+      cb('Draw');
     });
   }
 
   //add win
   if(winnerId !== ''){
-    User.addWin(winnerId, function(err, user){
+    User.addWin(winnerId, function(user){
       cb(user.username);
     });
   }

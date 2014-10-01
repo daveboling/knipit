@@ -45,7 +45,7 @@ User.addWin = function(winnerId, cb){
     //add win
     user.wins++;
     User.collection.save(user, function(err2){
-      cb(user.username);
+      cb(user);
     });
   });
 };
