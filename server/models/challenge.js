@@ -3,7 +3,8 @@
 var Mongo    = require('mongodb'),
     async    = require('async'),
     User     = require('./user'),
-    Deck     = require('./deck');
+    Deck     = require('./deck'),
+    History  = require('./history');
 
 function Challenge(o){
   this.senderId      = Mongo.ObjectID(o.senderId);
@@ -82,6 +83,15 @@ Challenge.all = function(userId, cb){
 Challenge.decline = function(challengeId, cb){
   var _id = Mongo.ObjectID(challengeId);
   Challenge.collection.remove({_id: _id}, cb);
+};
+
+Challenge.complete = function(challengeId, score, cb){
+  Challenge.findById(challengeId, function(err, challenge){
+    challenge.receiverScore = score;
+    History.create(challenge, function(err){
+      Challenge.decline(challengeId, cb);
+    });
+  });
 };
 
 

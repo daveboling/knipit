@@ -19,7 +19,11 @@
     function declineChallenge(challengeId){
       return $http.delete('/challenge/decline/'+challengeId);
     }
+
     //complete challenge (save)
+    function complete(score, challengeId){
+      return $http.post('/challenge/complete/'+challengeId, {score: score});
+    }
 
     //HELPER FUNCTIONS
     function calcScore(progress){
@@ -27,11 +31,13 @@
     }
 
 
+
     return {
       getChallenges:    getChallenges,
       acceptChallenge:  acceptChallenge,
       declineChallenge: declineChallenge,
-      calcScore:        calcScore
+      calcScore:        calcScore,
+      complete:         complete
     };
   }]);
 })();

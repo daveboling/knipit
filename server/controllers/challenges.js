@@ -21,4 +21,10 @@ exports.decline = function(req, res){
   });
 };
 
+exports.complete = function(req, res){
+  Challenge.complete(req.params.challengeId, req.body.score, function(err, challenge){
+    res.status(200).end();
+  });
+};
+
 

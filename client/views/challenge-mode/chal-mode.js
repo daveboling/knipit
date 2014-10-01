@@ -30,11 +30,11 @@
         $scope.issueChallenge($scope.overallScore);
       }else{
         //finish the challenge
-        toastr.success('You completed the challenge');
+        $scope.completeChallenge($scope.overallScore);
       }
     });
 
-    //timer
+    //interval timer
     var interval = $interval(setTimer, 1000);
 
     $scope.answer = function(choice){
@@ -65,6 +65,12 @@
     $scope.issueChallenge = function(score){
       Deck.challenge($scope.deck.ownerId, $scope.currentUser._id, $scope.deck._id, score).then(function(res){
         toastr.success('Challenge has been sent!');
+      });
+    };
+
+    $scope.completeChallenge = function(score){
+      Challenge.complete(score, $routeParams.challengeId).then(function(res){
+        toastr.success('You\'ve completed the challenge');
       });
     };
 

@@ -45,9 +45,9 @@
       $location.path('/deck/'+deckId+'/view');
     };
 
-    $scope.accept = function(deckId){
+    $scope.accept = function(challenge){
       toastr.success('Challenged accepted.');
-      $location.path('/challenge/' + deckId +'/' + false);
+      $location.path('/challenge/' + challenge.deckId +'/' + false +'/'+challenge._id);
     };
 
     $scope.decline = function(deckId){
@@ -58,7 +58,6 @@
     };
 
   }]);
-
 
 //module end
 })();

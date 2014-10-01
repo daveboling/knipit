@@ -56,7 +56,7 @@
     };
 
     $scope.challengeMode = function(){
-      $location.path('/challenge/' + $scope.deck._id + '/' + true);
+      $location.path('/challenge/' + $scope.deck._id + '/' + true + '/' + 'noid');
     };
 
 

@@ -4,8 +4,5 @@
     .challegerUsername {{challenge.user.username}}
     .challengeDeckName {{challenge.deck.name}}
     .challegeCategory Category: {{challenge.deck.category}}
-    .challengeStatus
-      .pendingApproval(ng-hide='challenge.hasAccepted') Status: Pending
-      .hasAccepted(ng-show='challenge.hasAccepted') Accepted
-    button.btn.btn-danger(ng-hide='currentUser._id === challenge.senderId || challenge.hasAccepted' ng-click='accept(challenge.deckId)') Accept
+    button.btn.btn-danger(ng-hide='currentUser._id === challenge.senderId || challenge.hasAccepted' ng-click='accept(challenge)') Accept
     button.btn.btn-danger(ng-hide='currentUser._id === challenge.senderId || challenge.hasAccepted' ng-click='decline(challenge._id)') Decline
