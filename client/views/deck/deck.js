@@ -67,6 +67,11 @@
       });
     };
 
+    $scope.deleteCard = function(index){
+      $scope.deck.cards.splice(index, 1);
+      $scope.saveDeck();
+    };
+
     $scope.deleteModal = function(){
       $scope.showModal = !$scope.showModal;
     };
