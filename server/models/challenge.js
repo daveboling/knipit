@@ -53,7 +53,7 @@ Challenge.create = function(info, cb){
 
 Challenge.all = function(userId, cb){
   var _id = Mongo.ObjectID(userId);
-  Challenge.collection.find({$or:[{receiverId: _id},{senderId: _id}]}, {isComplete: false}).toArray(function(err, challenges){
+  Challenge.collection.find({$or:[{receiverId: _id},{senderId: _id}]}).toArray(function(err, challenges){
     //if no challenges, do nothing
     if(!challenges){ return cb(); }
 
@@ -86,14 +86,40 @@ Challenge.decline = function(challengeId, cb){
 };
 
 Challenge.complete = function(challengeId, score, cb){
-  Challenge.findById(challengeId, function(err, challenge){
+  Challenge.findById(challengeId, function(err1, challenge){
     challenge.receiverScore = score;
-    History.create(challenge, function(err){
-      Challenge.decline(challengeId, cb);
+    Challenge.calcWinner(challenge, function(err2, username){
+      challenge.winner = username;
+      console.log(username);
+      History.create(challenge, function(err3){
+        Challenge.decline(challengeId, cb);
+      });
     });
   });
 };
 
+Challenge.calcWinner = function(challenge, cb){
+  var winnerId = '';
+  if(challenge.receiverScore > challenge.challengerScore){
+    winnerId = challenge.receiverId;
+  }
+  else if (challenge.receiverScore < challenge.challengerScore){
+    winnerId = challenge.receiverId;
+  }
+  else {
+    User.addDraw(challenge.receiverId, challenge.senderId, function(err){
+      cb('Draw game!');
+    });
+  }
+
+  //add win
+  if(winnerId !== ''){
+    User.addWin(winnerId, function(err, user){
+      cb(user.username);
+    });
+  }
+
+};
 
 module.exports = Challenge;
 

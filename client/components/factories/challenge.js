@@ -25,6 +25,9 @@
       return $http.post('/challenge/complete/'+challengeId, {score: score});
     }
 
+
+
+
     //HELPER FUNCTIONS
     function calcScore(progress){
       return (progress.correct * 5) + progress.timeScore;

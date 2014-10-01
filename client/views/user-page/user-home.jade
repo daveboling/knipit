@@ -19,13 +19,9 @@
                       option(value='Science') Science
                     .customButton(ng-click='createDeck()') Create
             .col-sm-2
-              .victories Victories: {{currentUser.wins}}
-              .losses Losses: {{currentUser.losses}}
+              .wins Wins: {{currentUser.wins}}
+              .draws Draws: {{currentUser.draws}}
             .col-sm-2
-              .overall Overall Rating: {{currentUser.overallRating}}
-              .player-rating Ratings:
-                i.fa.fa-thumbs-up {{currentUser.rating.up}}
-                i.fa.fa-thumbs-down {{currentUser.rating.down}}
         #yourDecks
           form(novalidate)
             label Sort By Category
@@ -46,5 +42,9 @@
 
 
         #challenges
-            h3 Challenges
+            h3 Open Challenges 
             include ../partials/challenges.jade
+
+        #history
+            h3 Challenge History
+            include ../partials/history.jade

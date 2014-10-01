@@ -10,7 +10,8 @@ var morgan         = require('morgan'),
     home           = require('../controllers/home'),
     users          = require('../controllers/users'),
     decks          = require('../controllers/decks'),
-    challenges     = require('../controllers/challenges');
+    challenges     = require('../controllers/challenges'),
+    histories      = require('../controllers/histories');
 
 module.exports = function(app, express){
   app.use(morgan('dev'));
@@ -49,6 +50,9 @@ module.exports = function(app, express){
   app.get('/challenges/all', challenges.getChallenges);
   app.delete('/challenge/decline/:challengeId', challenges.decline);
   app.post('/challenge/complete/:challengeId', challenges.complete);
+
+  //history routes
+  app.get('/history/all', histories.index);
 
   console.log('Express: Routes Loaded');
 };

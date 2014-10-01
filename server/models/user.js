@@ -9,10 +9,7 @@ function User(o){
   this.email         = o.email;
 
   this.wins          = 0;
-  this.losses        = 0;
-  this.slayings      = 0;
-  this.rating        = {up: 0, down: 0};
-  this.overallRating = 0;
+  this.draws         = 0;
 }
 
 Object.defineProperty(User, 'collection', {
@@ -38,6 +35,38 @@ User.login = function(o, cb){
     var isOk = bcrypt.compareSync(o.password, user.password);
     if(!isOk){return cb();}
     cb(null, user);
+  });
+};
+
+User.addWin = function(winnerId, cb){
+  User.findById(winnerId, function(err1, user){
+    //recast MongoID
+    user._id = Mongo.ObjectID(user._id);
+    //add win
+    user.wins++;
+    User.collection.save(user, function(err2){
+      cb(user.username);
+    });
+  });
+};
+
+User.addDraw = function(receiverId, senderId, cb){
+  User.findById(receiverId, function(err, receiver){
+    User.findById(senderId, function(err, sender){
+      //recast MongoID
+      receiver._id = Mongo.ObjectID(receiver._id);
+      sender._id = Mongo.ObjectID(sender._id);
+
+      //add draws
+      receiver.draws++;
+      sender.draws++;
+
+      //save users
+      User.collection.save(receiver, function(err){
+        User.collection.save(sender, cb);
+      });
+
+    });
   });
 };
 

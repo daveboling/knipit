@@ -4,13 +4,12 @@
   var userHome = angular.module('knipit');
 
   //CONTROLLER
-  userHome.controller('UserHomeCtrl', ['$scope', '$location', 'Deck', 'Challenge', function($scope, $location, Deck, Challenge){
+  userHome.controller('UserHomeCtrl', ['$scope', '$location', 'Deck', 'Challenge', 'History', function($scope, $location, Deck, Challenge, History){
     $scope.title              = 'User-Page';
     $scope.deck               = {};
     $scope.decks              = [];
     $scope.challenges         = [];
-    $scope.sendChallenges     = [];
-    $scope.receivedChallenges = [];
+    $scope.history            = [];
 
 
     function fail(){
@@ -21,6 +20,11 @@
     Deck.getDecks().then(function(res){
       $scope.decks = res.data.decks || [];
     }, fail);
+
+    //Display challenge history
+    History.getHistory($scope.currentUser._id).then(function(res){
+      $scope.history = res.data.history;
+    });
 
     //Display list of current challenges
     $scope.getChallenges = function(){

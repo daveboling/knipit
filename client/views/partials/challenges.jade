@@ -1,8 +1,7 @@
-#challenges
-  //Received challenges
-  .challenge(ng-repeat='challenge in challenges')
-    .challegerUsername {{challenge.user.username}}
-    .challengeDeckName {{challenge.deck.name}}
-    .challegeCategory Category: {{challenge.deck.category}}
-    button.btn.btn-danger(ng-hide='currentUser._id === challenge.senderId || challenge.hasAccepted' ng-click='accept(challenge)') Accept
-    button.btn.btn-danger(ng-hide='currentUser._id === challenge.senderId || challenge.hasAccepted' ng-click='decline(challenge._id)') Decline
+//Received challenges
+.challenge(ng-repeat='challenge in challenges')
+  .challegerUsername Contender: {{challenge.user.username}}
+  .challengeDeckName Deck: {{challenge.deck.name}}
+  .challegeCategory Category: {{challenge.deck.category}}
+  button.btn.btn-danger(ng-hide='currentUser._id === challenge.senderId || challenge.hasAccepted' ng-click='accept(challenge)') Accept
+  button.btn.btn-danger(ng-hide='currentUser._id === challenge.senderId || challenge.hasAccepted' ng-click='decline(challenge._id)') Decline

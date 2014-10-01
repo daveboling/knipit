@@ -14,7 +14,6 @@
     $scope.overallScore = 0;
     $scope.progress     = {complete: 0, wrong: 0, correct: 0, deckSize: 0, timeScore: 0};
 
-    console.log($routeParams.isChallenger);
 
     Deck.quiz($routeParams.deckId).then(function(res){
       $scope.deck = res.data.deck;

@@ -1,0 +1,6 @@
+//Challenge history (limit 10, sorted ascending)
+.history(ng-repeat='point in history')
+  .historyUsername Contender: {{point.user.username}}
+  .historyDeckName Deck: {{point.deck.name}}
+  .historyCategory Category: {{point.deck.category}}
+  .historyDate Date: {{point.date | date}}
