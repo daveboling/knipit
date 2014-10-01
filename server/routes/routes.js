@@ -45,6 +45,7 @@ module.exports = function(app, express){
   app.post('/deck/save', decks.saveChanges);
   app.get('/searchDecks', decks.search);
   app.post('/deck/rate', decks.rateDeck);
+  app.delete('/deck/delete/:deckId', decks.remove);
 
   //challenge routes
   app.post('/challenge/new', challenges.new);

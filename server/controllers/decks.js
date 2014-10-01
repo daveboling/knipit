@@ -44,3 +44,10 @@ exports.rateDeck = function(req, res){
   });
 };
 
+exports.remove = function(req, res){
+  console.log(req.body);
+  Deck.deleteDeck(req.params.deckId, function(err, deck){
+    res.status(200).end();
+  });
+};
+

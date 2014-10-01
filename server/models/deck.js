@@ -76,6 +76,16 @@ Deck.rate = function(query, cb){
   });
 };
 
+//removes ALL traces of a deck of cards
+Deck.deleteDeck = function(deckId, cb){
+  var _id = Mongo.ObjectID(deckId);
+  Deck.collection.remove({_id: _id}, function(err){
+    require('./history').removeDeckHistory(_id, function(err){
+      require('./challenge').removeChallengeHistory(_id, cb);
+    });
+  });
+};
+
 module.exports = Deck;
 
 //HELPER FUNCTIONS

@@ -27,7 +27,7 @@ History.create = function(challenge, cb){
 
 History.all = function(userId, cb){
   var _id = Mongo.ObjectID(userId);
-  History.collection.find({$or:[{receiverId: _id},{senderId: _id}]}).toArray(function(err, history){
+  History.collection.find({$or:[{receiverId: _id},{senderId: _id}]}).limit(10).toArray(function(err, history){
     //if no history, do nothing
     if(!history){ return cb(); }
 
@@ -52,6 +52,10 @@ History.all = function(userId, cb){
       });
     });
   });
+};
+
+History.removeDeckHistory = function(deckId, cb){
+  History.collection.remove({deckId: deckId}, cb);
 };
 
 module.exports = History;

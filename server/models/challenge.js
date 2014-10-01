@@ -85,6 +85,10 @@ Challenge.decline = function(challengeId, cb){
   Challenge.collection.remove({_id: _id}, cb);
 };
 
+Challenge.removeChallengeHistory = function(deckId, cb){
+  Challenge.collection.remove({_id: deckId}, cb);
+};
+
 Challenge.complete = function(challengeId, score, cb){
   Challenge.findById(challengeId, function(err1, challenge){
     challenge.receiverScore = score;

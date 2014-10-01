@@ -4,8 +4,9 @@
   var deck = angular.module('knipit');
 
   deck.controller('DeckCtrl', ['$scope', '$routeParams', '$location', 'Deck', 'User', function($scope, $routeParams, $location, Deck, User){
-    $scope.editMode = false;
-    $scope.deck     = {};
+    $scope.editMode    = false;
+    $scope.deck        = {};
+    $scope.showModal   = false;
 
     //inital deck load
     Deck.selectDeck($routeParams.deckId).then(function(res){
@@ -57,6 +58,17 @@
 
     $scope.challengeMode = function(){
       $location.path('/challenge/' + $scope.deck._id + '/' + true + '/' + 'noid');
+    };
+
+    $scope.deleteDeck = function(){
+      Deck.deleteDeck($scope.deck._id).then(function(res){
+        $location.path('/user-home');
+        toastr.error('Deck deleted.');
+      });
+    };
+
+    $scope.deleteModal = function(){
+      $scope.showModal = !$scope.showModal;
     };
 
 

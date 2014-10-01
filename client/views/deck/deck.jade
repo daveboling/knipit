@@ -11,6 +11,7 @@
       button.btn.btn-primary.action(type='button' ng-click='flip()') Flip cards
       button.btn.btn-primary.action(type='button' ng-click='quiz()') Take a test
       button.btn.btn-primary.action(ng-hide='isOwner' type='button' ng-click='challengeMode()') Challenge Deck
+      button.btn.btn-danger.action(ng-click='deleteModal()' ng-show='isOwner') Delete Deck
 
 .row#deckWrapper
   //View Mode
@@ -20,12 +21,13 @@
       .col-sm-5.question
         .viewMode(ng-hide='editMode') {{$index + 1}}. {{card.question}}
         textarea(ng-value='card.question || ""', ng-model='deck.cards[$index].question', ng-show='editMode')
-      .col-sm-6.answer 
+      .col-sm-6.answer
         .viewMode(ng-hide='editMode') {{card.answer}}
         textarea(ng-value='card.answer || ""', ng-model='deck.cards[$index].answer' ng-show='editMode', ng-keydown='enterAddCard($event, $last)')
       .col-sm-1.controls(ng-show='isOwner')
-        i.fa.fa-times
-        i.fa.fa-pencil-square-o
+        i.fa.fa-pencil-square-o(ng-hide='editMode' ng-click='editDeck()')
+        i.fa.fa-check-circle-o(ng-show='editMode' ng-click='saveDeck()')
+        i.fa.fa-times(ng-click='deleteCard($index)')
     .row.short-stuff
       .col-xs-12
         button.btn.btn-success.full#addCard(type='button' ng-show='editMode' ng-click='addCard()') Add Card
@@ -33,4 +35,12 @@
         .col-xs-12
         button.btn.btn-danger.full(type='button' ng-hide='editMode' ng-click='editDeck()') Add or Remove
         button.btn.btn-success.full(type='button' ng-show='editMode' ng-click='saveDeck()') Save
+
+//delete Confirmation
+#deleteDeck(ng-show='showModal')
+  .deleteConfirmation All traces of your deck will be removed from Knipit. 
+    br 
+    p Are you sure you want to delete this deck? One done, it cannot be recovered.
+    .btn.btn-default.full(ng-click='deleteDeck(); deleteModal()') Yes
+    .btn.btn-default.full(ng-click='deleteModal()') No
 

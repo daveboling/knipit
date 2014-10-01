@@ -45,6 +45,11 @@
       return $http.post('/deck/rate', {direction: direction, deckId: deckId});
     }
 
+    //delete deck
+    function deleteDeck(deckId){
+      return $http.delete('/deck/delete/'+deckId);
+    }
+
 
 
     //HELPER FUNCTIONS
@@ -81,7 +86,8 @@
             searchDecks:      searchDecks,
             checkIfOwner:     checkIfOwner,
             challenge:        challenge,
-            rateDeck:         rateDeck
+            rateDeck:         rateDeck,
+            deleteDeck:       deleteDeck
           };
   }]);
 
