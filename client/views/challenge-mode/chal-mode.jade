@@ -15,7 +15,9 @@ include ../partials/card-top.jade
 
 .wrap#done(ng-show='isComplete')
       p How'd you do?
-      #correct Correct: {{progress.correct}} 
+      #correct Correct: {{progress.correct}}
       #wrong Wrong: {{progress.wrong}}
       #overallScore Score: {{overallScore}}
+      i.fa.fa-thumbs-up.fa-2x.thumbs-up(ng-hide='isOwner' ng-click='rateDeck("up", deck._id)')
+      i.fa.fa-thumbs-down.fa-2x.thumbs-down(ng-hide='isOwner' ng-click='rateDeck("down", deck._id)')
       .customButton(ng-click='goToDashboard()') Back to Dashboard

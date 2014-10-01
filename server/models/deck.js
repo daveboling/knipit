@@ -58,8 +58,23 @@ Deck.search = function(query, cb){
   Deck.collection.find({name: {$regex: '.*'+query.query+'.*', $options: 'i'}}).toArray(cb);
 };
 
-//Deck.copy
+Deck.rate = function(query, cb){
+  console.log(query);
+  Deck.findById(query.deckId, function(err, deck){
+    //recast MongoID
+    deck._id = Mongo.ObjectID(deck._id);
 
+    //check rating up or down
+    if(query.direction === 'up'){
+      deck.rating.up++;
+    }else{
+      deck.rating.down++;
+    }
+
+    //save the deck
+    Deck.collection.save(deck, cb);
+  });
+};
 
 module.exports = Deck;
 
@@ -140,4 +155,3 @@ function shuffle(cards){
   }
   return newDeck;
 }
-

@@ -40,6 +40,13 @@
       return $http.post('/challenge/new', {receiverId: ownerId, senderId: currentUserId, deckId: deckId, challengerScore: challengerScore});
     }
 
+    //deck rating
+    function rateDeck(direction, deckId){
+      return $http.post('/deck/rate', {direction: direction, deckId: deckId});
+    }
+
+
+
     //HELPER FUNCTIONS
     function removeEmptyCards(cards){
       //convert empty cards to falsy values
@@ -73,7 +80,8 @@
             removeEmptyCards: removeEmptyCards,
             searchDecks:      searchDecks,
             checkIfOwner:     checkIfOwner,
-            challenge:        challenge
+            challenge:        challenge,
+            rateDeck:         rateDeck
           };
   }]);
 

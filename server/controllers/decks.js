@@ -38,3 +38,9 @@ exports.search = function(req, res){
   });
 };
 
+exports.rateDeck = function(req, res){
+  Deck.rate(req.body, function(err, deck){
+    res.status(200).end();
+  });
+};
+

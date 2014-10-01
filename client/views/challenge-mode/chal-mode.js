@@ -17,6 +17,7 @@
 
     Deck.quiz($routeParams.deckId).then(function(res){
       $scope.deck = res.data.deck;
+      $scope.isOwner = Deck.checkIfOwner($scope.deck.ownerId, $scope.currentUser._id);
       $scope.currentCard = $scope.deck.cards[$scope.cardIndex];
       $scope.progress.deckSize = $scope.deck.cards.length;
     });
@@ -75,6 +76,13 @@
 
     $scope.goToDashboard = function(){
       $location.path('/user-home');
+    };
+
+    $scope.rateDeck = function(direction, deckId){
+      Deck.rateDeck(direction, deckId).then(function(res){
+        toastr.success('Thank you for the rating!');
+        $scope.goToDashboard();
+      });
     };
 
     //HELPER
