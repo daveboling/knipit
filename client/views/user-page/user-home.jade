@@ -20,6 +20,8 @@
                       option(value='Science') Science
                     .customButton(ng-click='createDeck()') Create
             .col-sm-2
+              a.gravLink(href='https://en.gravatar.com/'): img.gravatar(alt='Create your own Gravatar!' gravatar-src-once='currentUser.email' gravatar-size="200") 
+              p.currentUsername {{currentUser.username}}
               .wins Wins: {{currentUser.wins}}
               .draws Draws: {{currentUser.draws}}
             .col-sm-2

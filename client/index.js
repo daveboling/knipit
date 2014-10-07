@@ -1,7 +1,7 @@
 (function(){
   'use strict';
 
-  angular.module('knipit', ['ngRoute', ,'ngAnimate', 'LocalForageModule'])
+  angular.module('knipit', ['ngRoute', ,'ngAnimate', 'LocalForageModule', 'ui.gravatar'])
   .constant('AUTH_EVENTS', {
     loginSuccess: 'auth-login-success',
     loginFailed: 'auth-login-failed',

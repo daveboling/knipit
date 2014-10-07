@@ -5,6 +5,8 @@
 @WHITE: #FFFFFF;
 @RED: #FF4136;
 
+@HOVER_COLOR: rgba(255, 255, 255, 0.5);
+
 * {
   border: 0px solid black;
 }
@@ -44,6 +46,11 @@ input.ng-valid, select.ng-valid{
 
 .backgroundWhite {
   background-color: white;
+}
+
+.customFadeIn {
+  transition: 0.2s;
+  opacity: 1;
 }
 
 
@@ -90,16 +97,15 @@ input.ng-valid, select.ng-valid{
   
 }
 
-//#container {
-//  &.ng-enter {
-//    transition: 1s;
-//    opacity: 0;
-//  }
-//  &.ng-enter-active {
-//    opacity: 1;
-//  }
-//
-//}
+#container {
+  &.ng-enter {
+    transition: 0.3s;
+    opacity: 0;
+  }
+  &.ng-enter-active {
+    opacity: 1;
+  }
+}
 
 
 
@@ -162,6 +168,23 @@ USER DASHBOARD
   width: 100%;
   background-color: @NAVY;
   color: white;
+  padding-top: 10px;
+  padding-bottom: 10px;
+
+
+  .gravatar {
+    width: 200px;
+    border: 2px solid black; 
+  }
+
+  .gravatar:hover {
+    .customFadeIn;
+    border-color: @HOVER_COLOR;
+  }
+  
+  .currentUsername {
+    font-size: 1.5em;
+  }
 }
 
 #newDeck {
@@ -226,6 +249,8 @@ USER DASHBOARD
     text-align: center;
   }
 }
+
+
 
 /*----------------------------------------
 USER DASHBOARD
@@ -407,4 +432,53 @@ CUSTOM BUTTONS
 
 /*----------------------------------------
 CUSTOM BUTTONS END
+------------------------------------------*/
+
+
+
+
+
+
+
+/*----------------------------------------
+BOOTSTRAP OVERRIDES
+------------------------------------------*/
+
+.navbar {
+   background-color: transparent;
+   background: transparent;
+}
+
+.navbar-default .navbar-nav > li > a {
+  color: white;
+  text-transform: capitalize;
+  font-size: 1.2em;
+}
+
+.navbar-default .navbar-nav > li > a:hover {
+  .customFadeIn;
+  color: @HOVER_COLOR;
+}
+
+.navbar-default {
+  border: 0px solid white;
+}
+
+#navigation {
+  border:0px;
+  color: white;
+}
+
+.yourProfile {
+  border: 1px solid black;
+  vertical-align: middle;
+}
+
+.yourProfile:hover {
+  .customFadeIn;
+  border-color: @HOVER_COLOR;
+}
+
+/*----------------------------------------
+BOOTSTRAP OVERRIDES END
 ------------------------------------------*/
