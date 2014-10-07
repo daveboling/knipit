@@ -10,7 +10,7 @@
 
 .wrap
   #searchResults
-    .result(ng-repeat='result in results' ng-click='viewPublicDeck(result._id)')
+    .result(ng-repeat='result in results' ng-click='viewPublicDeck(result._id)' data-category='result.category')
       .deckName {{result.name}}
       .deckNumCards Deck Size: {{result.cards.length}}
       .deckRatingUp: i.fa.fa-thumbs-up {{result.rating.up}}
