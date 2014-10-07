@@ -3,15 +3,16 @@
   #searchBar
     form(novalidate name='searchForm')
       input(type='text' name='query' ng-model='search.query' required)
-      select
+      select(ng-model='categoryToFilter' ng-change='filterResults()')
         include ../partials/categories.jade
       button.btn.btn-success(ng-click='search()') Search
 
 
 .wrap
   #searchResults
-    .result(ng-repeat='result in results' ng-click='viewPublicDeck(result._id)' data-category='result.category')
+    .result(ng-repeat='result in results | sort' class='{{result.category}}' ng-click='viewPublicDeck(result._id)')
       .deckName {{result.name}}
+      .deckSubject {{result.category}}
       .deckNumCards Deck Size: {{result.cards.length}}
       .deckRatingUp: i.fa.fa-thumbs-up {{result.rating.up}}
       .deckRatingDown: i.fa.fa-thumbs-down {{result.rating.down}}

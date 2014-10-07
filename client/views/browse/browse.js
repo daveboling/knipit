@@ -1,3 +1,4 @@
+/* global Isotope */
 (function(){
   'use strict';
 
@@ -5,8 +6,10 @@
 
   browse.controller('BrowseCtrl', ['$scope', '$location', 'Deck', function($scope, $location, Deck){
 
+    var $searchResults = document.querySelector('#container');
     $scope.search = {};
     $scope.results = [];
+
 
     $scope.search = function(){
       Deck.searchDecks($scope.search.query, 'all').then(function(res){
@@ -18,6 +21,24 @@
     $scope.viewPublicDeck = function(deckId){
       $location.path('/deck/'+deckId+'/view');
     };
+
+    //filtering
+    $scope.filterResults = function(){
+      var filter =  $scope.categoryToFilter || '',
+      iso = new Isotope($searchResults),
+      queries = filter.split(' ');
+
+      queries.forEach(function(word, index){
+        queries[index] = '.' + word;
+      });
+
+      iso.isotope({
+        itemSelector: '.result',
+        layoutMode: 'masonry',
+        filter: queries[0]
+      });
+    };
+
 
   }]);
 
