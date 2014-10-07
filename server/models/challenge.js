@@ -86,7 +86,7 @@ Challenge.decline = function(challengeId, cb){
 };
 
 Challenge.removeChallengeHistory = function(deckId, cb){
-  Challenge.collection.remove({_id: deckId}, cb);
+  Challenge.collection.remove({deckId: deckId}, cb);
 };
 
 Challenge.complete = function(challengeId, score, cb){
@@ -146,7 +146,12 @@ function getPublicUserData(challenge, cb){
 
 function getDeckInfo(challenge, cb){
   Deck.findById(challenge.deckId.toString(), function(err, deck){
-    var deckInfo = {name: deck.name, category: deck.category};
-    cb(null, deckInfo);
+    if(deck){
+      var deckInfo = {name: deck.name, category: deck.category};
+      cb(null, deckInfo);
+    }else{
+      cb();
+    }
+
   });
 }
