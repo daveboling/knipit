@@ -13,6 +13,7 @@ html, body{
   background-image: url('/assets/images/navy.jpg');
   background-size: cover; 
   height: 100%;
+  font-size: 13px;
 }
 
 
@@ -28,6 +29,24 @@ input.ng-valid, select.ng-valid{
     margin-bottom: 0;
 }
 
+.negatePadding {
+  padding:0px;
+}
+
+.negateMargin {
+  margin:0px;
+}
+
+.negateBootMargin {
+  margin-left: 15px;
+  margin-right:15px;
+}
+
+.backgroundWhite {
+  background-color: white;
+}
+
+
 
 //Site wrapper
 //#wrapper {
@@ -38,7 +57,7 @@ input.ng-valid, select.ng-valid{
 
 //General Wrappers
 #deckWrapper, #inner-wrap, .wrap {
-  width: 80%;
+  width: 90%;
   height: 100%;
   margin: 0px auto;
   margin-top: 5px;
@@ -53,27 +72,6 @@ input.ng-valid, select.ng-valid{
   margin-left: 0px;
 }
 
-.customButton {
-  font-size: 1.2em;
-  padding: 10px;
-  width: 100px;
-  height: 50px;
-  color: black;
-  border: 1px solid white;
-  border-radius: 10px;
-  text-align: center;
-  background-color: @AQUA;
-  width: 50%;
-  height: 100%;
-  margin:0px auto;
-  margin-top: 10px;
-
-  &:hover{
-    background-color: black;
-    color: white;
-    cursor: pointer;
-  }
-}
 
 //Transitions
 .smooth-entrance {
@@ -150,16 +148,11 @@ USER DASHBOARD
   text-align: center;
 
   .challenge, .history {
-    height: 150px;
-    width: 400px;
+    height: 100px;
+    width: 90%;
     display: inline-block;
-    padding: 10px;
-    border:1px solid white;
+    border-bottom:1px solid black;
   }
-
-  .challenge:hover {
-    border: 1px solid @NAVY;
- }
 
 }
 
@@ -378,4 +371,39 @@ HOME PAGE START
 
 /*----------------------------------------
 HOME PAGE END
+------------------------------------------*/
+
+
+
+
+
+/*----------------------------------------
+CUSTOM BUTTONS
+------------------------------------------*/
+
+
+.customButton {
+  font-size: 1.2em;
+  padding: 10px;
+  width: 100px;
+  height: 50px;
+  color: black;
+  border: 1px solid white;
+  border-radius: 10px;
+  text-align: center;
+  background-color: @AQUA;
+  width: 50%;
+  height: 100%;
+  margin:0px auto;
+  margin-top: 10px;
+
+  &:hover{
+    background-color: black;
+    color: white;
+    cursor: pointer;
+  }
+}
+
+/*----------------------------------------
+CUSTOM BUTTONS END
 ------------------------------------------*/
