@@ -51,7 +51,6 @@
     }
 
 
-
     //HELPER FUNCTIONS
     function removeEmptyCards(cards){
       //convert empty cards to falsy values

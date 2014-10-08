@@ -1,4 +1,4 @@
-.row#options
+.row.negateMargin#options
   #inner-wrap
     .col-sm-6
       #deck-name {{deck.name}}
@@ -8,10 +8,10 @@
       #deck-rating-down: i.fa.fa-thumbs-down {{deck.rating.down}}
       #deck-owner-username Owner: {{deck.owner.username}}
     .col-sm-6
-      button.btn.btn-primary.action(type='button' ng-click='flip()') Flip cards
-      button.btn.btn-primary.action(type='button' ng-click='quiz()') Take a test
-      button.btn.btn-primary.action(ng-hide='isOwner' type='button' ng-click='challengeMode()') Challenge Deck
-      button.btn.btn-danger.action(ng-click='deleteModal()' ng-show='isOwner') Delete Deck
+      .flipButton(ng-click='flip()') Flip cards
+      .testButton(ng-click='quiz()') Take a test
+      .challengeButton(ng-hide='isOwner' ng-click='challengeMode()') Challenge Deck
+      .deleteButton(ng-click='deleteModal()' ng-show='isOwner') Delete Deck
 
 .row#deckWrapper
   //View Mode

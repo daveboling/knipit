@@ -6,7 +6,7 @@
       input(type='text' name='query' ng-model='search.query' required)
       select(ng-model='categoryToFilter' ng-change='filterResults()')
         include ../partials/categories.jade
-      button.btn.btn-success(ng-click='search()') Search
+      .searchButton(ng-click='search()') Search
 
 
 .wrap

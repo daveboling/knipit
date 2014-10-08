@@ -2,13 +2,16 @@
 
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro);
 
-@NAVY: #001F3F;
-@AQUA: #7FDBFF;
+@NAVY: rgba(0, 12.2, 24.7, 0.8);
+@AQUA: rgba(100, 219, 200, 0.7);
 @WHITE: #FFFFFF;
 @RED: #FF4136;
+@LIGHTWHITE: rgba(255, 255, 255, 0.7);
 
 @HOVER_COLOR: rgba(255, 255, 255, 0.5);
 @BLACK_TRANS: rgba(0, 0, 0, 0.5);
+
+@THE_FAM: 'Source Sans Pro', 'Arial';
 
 html, body{
   //background-image: url('/assets/images/navy.jpg');
@@ -369,9 +372,8 @@ SELECTED DECK
 
 #options {
   min-height: 200px;
-  max-height: 200px;
-  background-color: #001F3F;
-  border: 2px double black;
+  background-color: @NAVY;
+  border: 1px solid black;
   color: white;
 
   //Headers
@@ -511,21 +513,77 @@ CUSTOM BUTTONS
   width: 100px;
   height: 50px;
   color: black;
-  border: 1px solid white;
-  border-radius: 10px;
+  border-radius: 2px;
   text-align: center;
   background-color: @AQUA;
   width: 50%;
   height: 100%;
   margin:0px auto;
   margin-top: 10px;
+  border: 1px solid black;
 
   &:hover{
-    background-color: black;
-    color: white;
+    border: 1px solid white;
     cursor: pointer;
   }
 }
+
+.searchButton {
+  .customButton;
+  width: 100px;
+  background-color: @NAVY;
+  color: @LIGHTWHITE;
+
+  &:hover{
+    .customFadeIn;
+    background-color: @BLACK_TRANS;
+    color: white;
+    border: 1px solid @LIGHTWHITE;
+    cursor: pointer;
+  }
+}
+
+.userControlButton {
+  .searchButton;
+  display: inline-block;
+  background-color: @BLACK_TRANS;
+  font-family: @THE_FAM;
+  font-size: 1.5em;
+  min-width: 150px;
+  height: 75px;
+  margin: 10px;
+}
+
+.deleteButton {
+  .userControlButton;
+  &:hover{
+    border-color: rgba(225, 36, 36, 0.6);
+  }
+}
+
+.flipButton {
+  .userControlButton;
+  &:hover{
+    border-color: rgba(29, 78, 239, 0.6);
+  }
+}
+
+.testButton {
+  .userControlButton;
+  &:hover{
+    border-color: rgba(29, 120, 39, 0.6);
+  }
+}
+
+.challengeButton {
+  .userControlButton;
+  width: 320px;
+  display:block;
+  &:hover{
+    border-color: rgba(120, 0, 136, 0.6);
+  }
+}
+
 
 /*----------------------------------------
 CUSTOM BUTTONS END
