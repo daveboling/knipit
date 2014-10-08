@@ -36,16 +36,17 @@
           #yourDecks
             form(novalidate)
               label Sort By Category
-              select
+              select(ng-model='categoryToFilter' ng-change='filterResults()')
                 include ../partials/categories.jade
-    
-            .deck(ng-repeat='deck in decks' data-category='deck.category', ng-click='selectDeck(deck._id)')
-              .row
-                .title {{deck.name}}
-                .col-xs-6
-                  .category Category: {{deck.category}}
-                  .numCards Deck Size: {{deck.cards.length + ' cards' || 'No cards yet...'}}
-                .col-xs-6
-                  .deckRating: i.fa.fa-thumbs-up {{deck.rating.up}}
-                  .deckRating: i.fa.fa-thumbs-down {{deck.rating.down}}
-                  .deckProgress {{'Progress:' + (deck.report || 0) + '%'}}
+
+            #deckContainer(isotope-container="isotope-container")
+              .deck(ng-repeat='deck in decks' isotope-item="isotope-item" class='{{deck.category}}' ng-click='selectDeck(deck._id)')
+                .row
+                  .title {{deck.name}}
+                  .col-xs-6
+                    .category Category: {{deck.category}}
+                    .numCards Deck Size: {{deck.cards.length + ' cards' || 'No cards yet...'}}
+                  .col-xs-6
+                    .deckRating: i.fa.fa-thumbs-up {{deck.rating.up}}
+                    .deckRating: i.fa.fa-thumbs-down {{deck.rating.down}}
+                    .deckProgress {{'Progress:' + (deck.report || 0) + '%'}}

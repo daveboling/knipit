@@ -10,6 +10,8 @@
     $scope.decks              = [];
     $scope.challenges         = [];
     $scope.history            = [];
+    $scope.categoryToFilter   = '';
+    var decks                 = $('#deckContainer');
 
 
     function fail(){
@@ -58,6 +60,25 @@
       Challenge.declineChallenge(deckId).then(function(res){
         toastr.success('Challenge declined.');
         $scope.getChallenges();
+      });
+    };
+
+    //isotope
+    $scope.filterResults = function(){
+      var filter =  $scope.categoryToFilter || '',
+      queries = filter.split(' ');
+
+      queries.forEach(function(word, index){
+        //checking to see if global character has been picked
+        if(word !== '*'){
+          queries[index] = '.' + word;
+        }
+      });
+
+      decks.isotope({
+        itemSelector: '.deck',
+        layoutMode: 'masonry',
+        filter: queries[0]
       });
     };
 
