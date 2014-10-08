@@ -1,4 +1,3 @@
-/* global Isotope */
 (function(){
   'use strict';
 
@@ -6,7 +5,7 @@
 
   browse.controller('BrowseCtrl', ['$scope', '$location', 'Deck', function($scope, $location, Deck){
 
-    var $searchResults = document.querySelector('#container');
+    var searchResults = $('#searchResults');
     $scope.search = {};
     $scope.results = [];
 
@@ -25,14 +24,13 @@
     //filtering
     $scope.filterResults = function(){
       var filter =  $scope.categoryToFilter || '',
-      iso = new Isotope($searchResults),
       queries = filter.split(' ');
 
       queries.forEach(function(word, index){
         queries[index] = '.' + word;
       });
 
-      iso.isotope({
+      searchResults.isotope({
         itemSelector: '.result',
         layoutMode: 'masonry',
         filter: queries[0]

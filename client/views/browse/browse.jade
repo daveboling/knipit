@@ -9,8 +9,8 @@
 
 
 .wrap
-  #searchResults
-    .result(ng-repeat='result in results | sort' class='{{result.category}}' ng-click='viewPublicDeck(result._id)')
+  #searchResults(isotope-container="isotope-container")
+    .result(ng-repeat='result in results' isotope-item="isotope-item" class='{{result.category}}' ng-click='viewPublicDeck(result._id)')
       .deckName {{result.name}}
       .deckSubject {{result.category}}
       .deckNumCards Deck Size: {{result.cards.length}}
