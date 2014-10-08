@@ -1,6 +1,7 @@
 
 .wrap
   #searchBar
+    .customHeader Deck Search
     form(novalidate name='searchForm')
       input(type='text' name='query' ng-model='search.query' required)
       select(ng-model='categoryToFilter' ng-change='filterResults()')

@@ -14,10 +14,7 @@
                     input.form-control(type='text' name='name' ng-minlength='3' ng-model='deck.name')
                     label Category
                     select.form-control(name='category' ng-model='deck.category')
-                      option(value='Programming') Programming
-                      option(value='Sports') Sports
-                      option(value='History') History
-                      option(value='Science') Science
+                      include ../partials/categories.jade
                     .customButton(ng-click='createDeck()') Create
             .col-sm-2
               a.gravLink(href='https://en.gravatar.com/'): img.gravatar(alt='Create your own Gravatar!' gravatar-src-once='currentUser.email' gravatar-size="200") 

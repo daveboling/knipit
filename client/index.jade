@@ -15,11 +15,16 @@ html(ng-app='knipit', lang='en')
     link(href='/views/browse/browse.css', rel='stylesheet')
     link(href='/vendor/animate.css/animate.css', rel='stylesheet')
   body(ng-controller='AppCtrl')
+    #overlay
+    video(autoplay loop id="video-background" muted src="/assets/images/slowBlue.mp4" type="video/mp4")
     include nav
     .container-fluid
-      .row
-        .col-xs-12
-          #container(ng-view)
+        .row
+            .col-xs-12.negatePadding
+                #container(ng-view)
+        .row
+            .col-xs-12
+    include ./views/partials/footer.jade            
 
     script(src='/vendor/jquery/dist/jquery.js')
     script(src='/vendor/angular/angular.js')

@@ -1,21 +1,20 @@
 // http://clrs.cc/
 
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro);
+
 @NAVY: #001F3F;
 @AQUA: #7FDBFF;
 @WHITE: #FFFFFF;
 @RED: #FF4136;
 
 @HOVER_COLOR: rgba(255, 255, 255, 0.5);
-
-* {
-  border: 0px solid black;
-}
+@BLACK_TRANS: rgba(0, 0, 0, 0.5);
 
 html, body{
-  background-image: url('/assets/images/navy.jpg');
-  background-size: cover; 
+  //background-image: url('/assets/images/navy.jpg');
+  //background-size: cover; 
   height: 100%;
-  font-size: 13px;
+  font-size: 14px;
 }
 
 
@@ -25,6 +24,11 @@ input.ng-invalid, select.ng-invalid{
 
 input.ng-valid, select.ng-valid{
   border-color: green;
+}
+
+.customHeader {
+  color: white;
+  font-size: 1.5em;
 }
 
 .navbar {
@@ -53,6 +57,9 @@ input.ng-valid, select.ng-valid{
   opacity: 1;
 }
 
+.sans-open {
+  font-family: 'Source Sans Pro', 'Arial';
+}
 
 
 //Site wrapper
@@ -97,7 +104,8 @@ input.ng-valid, select.ng-valid{
   
 }
 
-#container {
+#container{
+
   &.ng-enter {
     transition: 0.3s;
     opacity: 0;
@@ -105,7 +113,96 @@ input.ng-valid, select.ng-valid{
   &.ng-enter-active {
     opacity: 1;
   }
+  
+
+
 }
+
+.container-fluid {
+    min-height: 100%;
+    margin: 0 auto -155px; /* the bottom margin is the negative value of the footer's height */
+
+    &:after {
+    content: "";
+    display: block;
+    height: 155px; 
+  }
+}
+
+
+/*----------------------------------------
+HOME PAGE
+------------------------------------------*/
+
+#homeOne {
+  background-color: @BLACK_TRANS;
+  width: 100%;
+  min-height: 400px;
+  margin: 0px;
+  text-align: center;
+  .sans-open;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.7em;
+
+  img {
+    margin: 0px auto;
+    margin-top: 50px;
+  }
+
+}
+
+#homeTwo {
+  border-top:1px solid white;
+  background-color: rgba(255, 255, 255, 0.7);
+  color: black; 
+  font-size: 1.7em;
+  text-align: center;
+  min-height: 400px;
+  .sans-open;
+}
+
+#homeThree {
+  background-color: @BLACK_TRANS;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.7em;
+  text-align: center;
+  min-height: 400px;
+  border-bottom: 2px double black;
+  .sans-open;
+}
+
+
+
+
+#overlay {
+  position: fixed;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  min-width: 100%; 
+  min-height: 100%;
+  width: auto; 
+  height: auto;
+  z-index: -1;
+  background-color: @BLACK_TRANS;
+}
+
+video {
+/*  making the video fullscreen  */
+  position: fixed;
+  right: 0; 
+  bottom: 0;
+  min-width: 100%; 
+  min-height: 100%;
+  width: auto; 
+  height: auto;
+  z-index: -100;
+}
+
+
+/*----------------------------------------
+HOME PAGE END
+------------------------------------------*/
 
 
 
@@ -445,8 +542,7 @@ BOOTSTRAP OVERRIDES
 ------------------------------------------*/
 
 .navbar {
-   background-color: transparent;
-   background: transparent;
+   background-color: @BLACK_TRANS;
 }
 
 .navbar-default .navbar-nav > li > a {
@@ -481,4 +577,34 @@ BOOTSTRAP OVERRIDES
 
 /*----------------------------------------
 BOOTSTRAP OVERRIDES END
+------------------------------------------*/
+
+
+
+/*----------------------------------------
+FOOTER
+------------------------------------------*/
+#footer {
+  background-color: @BLACK_TRANS;
+  padding: 5px;
+  text-align: center;
+  height: 155px; /* '.push' must be the same height as 'footer' */
+ 
+  .socialMedia {
+    display: inline-block;
+    padding: 10px;
+    margin-right: 20px;
+    color: white;
+  }
+
+  .socialMedia:hover {
+    color: rgba(211, 211, 211, 0.6);
+    cursor: pointer;
+  }
+}
+
+
+
+/*----------------------------------------
+FOOTER END
 ------------------------------------------*/

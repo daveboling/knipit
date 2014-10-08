@@ -21,13 +21,16 @@
       $location.path('/deck/'+deckId+'/view');
     };
 
-    //filtering
+    //isotope
     $scope.filterResults = function(){
       var filter =  $scope.categoryToFilter || '',
       queries = filter.split(' ');
 
       queries.forEach(function(word, index){
-        queries[index] = '.' + word;
+        //checking to see if global character has been picked
+        if(word !== '*'){
+          queries[index] = '.' + word;
+        }
       });
 
       searchResults.isotope({
