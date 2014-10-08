@@ -1,4 +1,4 @@
-.row#card-top
+.row.negateMargin#card-top
   .wrap(ng-hide='isComplete')
-    #progress Progress: {{(progress.complete / progress.deckSize * 100) | number:0}}%
-    .customButton(data-toggle="modal" data-target="#shuffleConfirm") Shuffle
+    #progress Question {{(progress.complete + 1) + ' of ' + progress.deckSize}}
+    .customButton(ng-hide='isChalMode')(data-toggle="modal" data-target="#shuffleConfirm") Shuffle

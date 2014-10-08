@@ -12,6 +12,7 @@
     $scope.isChallenger = $routeParams.isChallenger;
     $scope.timer        = 30; //default starting for timer
     $scope.overallScore = 0;
+    $scope.isChalMode   = true;
     $scope.progress     = {complete: 0, wrong: 0, correct: 0, deckSize: 0, timeScore: 0};
 
 
