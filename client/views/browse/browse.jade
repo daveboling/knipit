@@ -5,6 +5,7 @@
     form(novalidate name='searchForm')
       input(type='text' name='query' ng-model='search.query' required)
       select(ng-model='categoryToFilter' ng-change='filterResults()')
+        option(value='*' selected) All
         include ../partials/categories.jade
       button.searchButton(ng-click='search()') Search
 

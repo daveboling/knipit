@@ -173,7 +173,9 @@ function removeDecks(results, currentUserId){
 
   //remove decks with no enough cards and decks that belong to curently logged in user
   results.forEach(function(r, index){
-    if(r.ownerId === currentUserId || r.cards.length < 4){
+    if(r.ownerId === currentUserId){
+      return;
+    }else if(r.cards.length < 4){
       return;
     }else{
       newResults.push(r);
