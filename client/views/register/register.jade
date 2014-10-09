@@ -1,4 +1,4 @@
-h3 Register
+.registerHeader Register
 
 form#registerForm(role='form', novalidate, name='userForm')
   .form-group
@@ -13,5 +13,5 @@ form#registerForm(role='form', novalidate, name='userForm')
   .form-group
     label(for='confirmPassword') Confirm Password
     input.form-control#confirmPassword(type='password', ng-change='checkPass()', ng-model='user.passwordConfirm', required)
-  button.btn.btn-primary.full(ng-click='register()') Submit 
+  .submitButton(ng-click='register()') Submit 
 

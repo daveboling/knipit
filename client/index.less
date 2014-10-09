@@ -200,11 +200,20 @@ video {
 /*----------------------------------------
 TAG LOGIN AND REGISTER
 ------------------------------------------*/
+.loginHeader {
+  .customHeader;
+  text-align: center;
+}
+
+.registerHeader {
+  .loginHeader;
+}
 
 #loginForm, #registerForm {
   width: 200px;
   height: 400px;
   margin: 0px auto;
+  color: @LIGHTWHITE;
 }
 
 .full {
@@ -263,7 +272,7 @@ TAG USER-PAGE JADE
 
 #yourDecks, #deckContainer {
   padding: 5px;
-  background-color: @LIGHTWHITE;
+  background-color: white;
   height: 100%;
 }
 
@@ -503,6 +512,29 @@ TAG CUSTOM BUTTONS
     border-color: rgba(120, 0, 136, 0.6);
   }
 }
+
+.submitButton {
+  .flipButton;
+  margin:0px auto;
+  width: 100%;
+  height: 50px;
+}
+
+.loginButton {
+  .testButton;
+  margin:0px auto;
+  width: 100%;
+  height: 50px;
+}
+
+.registerButton {
+  .deleteButton;
+  margin:0px auto;
+  width: 100%;
+  height: 50px;
+  margin-top: 20px;
+}
+
 
 
 /*----------------------------------------

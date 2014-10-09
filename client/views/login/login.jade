@@ -1,4 +1,4 @@
-h3 Login
+.loginHeader Login
 
 form#loginForm(role='form', novalidate, name='userForm')
   .form-group
@@ -7,7 +7,7 @@ form#loginForm(role='form', novalidate, name='userForm')
   .form-group
     label(for='password') Password
     input.form-control#password(type='password', name='password', ng-model='user.password', required, ng-minlength='3')
-  button.btn.btn-primary.full(ng-click='login()') Login
+  button.loginButton(ng-click='login()') Login
   a(href='/#/register/')
-    button.btn.btn-danger.full(type='button') Register 
+    .registerButton(type='button') Register 
 
