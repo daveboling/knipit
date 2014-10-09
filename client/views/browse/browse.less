@@ -1,3 +1,8 @@
+@LIGHTERWHITE: rgba(255, 255, 255, 0.8);
+@HOVER_COLOR: rgba(255, 255, 255, 0.5);
+@BLACK_TRANS: rgba(0, 0, 0, 0.5);
+
+
 #searchBar {
   margin: 0px auto;
   text-align: center;
@@ -45,12 +50,12 @@
     font-size: 1.2em;
     width: 250px;
     height: 200px;
-    background-color: white;
+    background-color: @LIGHTERWHITE;
     overflow: hidden;
     border: 2px solid black;
 
     &:hover {
-      background-color: black;
+      background-color: @BLACK_TRANS;
       color: white;
       cursor: pointer;
     }

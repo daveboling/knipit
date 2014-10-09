@@ -24,17 +24,17 @@
             .col-sm-2
         .col-sm-4.backgroundWhite.negatePadding
           #challenges
-              h3 Open Challenges 
+              h3 Open Challenges
               include ../partials/challenges.jade
   
-          #history(ng-show='history.length')
+          #history
               h3 Challenge History
               include ../partials/history.jade
 
         .col-sm-8.negatePadding
-
           #yourDecks
-            form(novalidate)
+            .customHeaderDark(ng-hide='decks.length'): em You have no flash-cards 
+            form(novalidate ng-show='decks.length')
               label Sort By Category
               select(ng-model='categoryToFilter' ng-change='filterResults()')
                 include ../partials/categories.jade

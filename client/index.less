@@ -1,5 +1,3 @@
-// http://clrs.cc/
-
 @import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro);
 
 @NAVY: rgba(0, 12.2, 24.7, 0.8);
@@ -8,10 +6,16 @@
 @RED: #FF4136;
 @LIGHTWHITE: rgba(255, 255, 255, 0.7);
 
+//Transitional colors
 @HOVER_COLOR: rgba(255, 255, 255, 0.5);
 @BLACK_TRANS: rgba(0, 0, 0, 0.5);
 
+//Fonts
 @THE_FAM: 'Source Sans Pro', 'Arial';
+
+/*----------------------------------------
+TAG GENERAL
+------------------------------------------*/
 
 html, body{
   //background-image: url('/assets/images/navy.jpg');
@@ -30,8 +34,15 @@ input.ng-valid, select.ng-valid{
 }
 
 .customHeader {
-  color: white;
+  color: @LIGHTWHITE;
   font-size: 1.5em;
+  margin: 2px;
+}
+
+.customHeaderDark {
+  color: @NAVY;
+  font-size: 1.5em;
+  margin: 2px;
 }
 
 .navbar {
@@ -65,12 +76,9 @@ input.ng-valid, select.ng-valid{
 }
 
 
-//Site wrapper
-//#wrapper {
-//  min-height: 100%;
-//  height: auto !important;
-//  height: 100%;
-//}
+/*----------------------------------------
+TAG WRAPPERS
+------------------------------------------*/
 
 //General Wrappers
 #deckWrapper, #inner-wrap, .wrap {
@@ -89,8 +97,10 @@ input.ng-valid, select.ng-valid{
   margin-left: 0px;
 }
 
+/*----------------------------------------
+TAG TRANSITIONS
+------------------------------------------*/
 
-//Transitions
 .smooth-entrance {
   &.ng-enter {
     transition: 1s;
@@ -108,7 +118,6 @@ input.ng-valid, select.ng-valid{
 }
 
 #container{
-
   &.ng-enter {
     transition: 0.3s;
     opacity: 0;
@@ -116,26 +125,17 @@ input.ng-valid, select.ng-valid{
   &.ng-enter-active {
     opacity: 1;
   }
-  
-
-
 }
-
-.container-fluid {
-    min-height: 100%;
-    margin: 0 auto -155px; /* the bottom margin is the negative value of the footer's height */
-
-    &:after {
-    content: "";
-    display: block;
-    height: 155px; 
-  }
-}
-
 
 /*----------------------------------------
-HOME PAGE
+TAG HOME JADE
 ------------------------------------------*/
+
+#homeBanner {
+  text-align: center;
+  color: white;
+  font-weight: bold;
+}
 
 #homeOne {
   background-color: @BLACK_TRANS;
@@ -151,7 +151,6 @@ HOME PAGE
     margin: 0px auto;
     margin-top: 50px;
   }
-
 }
 
 #homeTwo {
@@ -174,9 +173,6 @@ HOME PAGE
   .sans-open;
 }
 
-
-
-
 #overlay {
   position: fixed;
   bottom: 0;
@@ -187,11 +183,10 @@ HOME PAGE
   width: auto; 
   height: auto;
   z-index: -1;
-  background-color: @BLACK_TRANS;
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 video {
-/*  making the video fullscreen  */
   position: fixed;
   right: 0; 
   bottom: 0;
@@ -202,20 +197,8 @@ video {
   z-index: -100;
 }
 
-
 /*----------------------------------------
-HOME PAGE END
-------------------------------------------*/
-
-
-
-
-
-
-
-
-/*----------------------------------------
-LOGIN AND REGISTER
+TAG LOGIN AND REGISTER
 ------------------------------------------*/
 
 #loginForm, #registerForm {
@@ -232,20 +215,7 @@ LOGIN AND REGISTER
 }
 
 /*----------------------------------------
-LOGIN AND REGISTER END
-------------------------------------------*/
-
-
-
-
-
-
-
-
-
-
-/*----------------------------------------
-USER DASHBOARD
+TAG USER-PAGE JADE
 ------------------------------------------*/
 
 #challenges, #history{
@@ -260,7 +230,6 @@ USER DASHBOARD
     display: inline-block;
     border-bottom:1px solid black;
   }
-
 }
 
 #userControls {
@@ -294,12 +263,10 @@ USER DASHBOARD
 
 #yourDecks, #deckContainer {
   padding: 5px;
-  background-color: @WHITE;
+  background-color: @LIGHTWHITE;
   height: 100%;
 }
 
-
-//deck display
 .deck {
   height: 125px;
   width: 95%;
@@ -350,24 +317,8 @@ USER DASHBOARD
   }
 }
 
-
-
 /*----------------------------------------
-USER DASHBOARD
-------------------------------------------*/
-
-
-
-
-
-
-
-
-
-
-
-/*----------------------------------------
-SELECTED DECK
+TAG DECK JADE
 ------------------------------------------*/
 
 #options {
@@ -472,38 +423,7 @@ SELECTED DECK
 }
 
 /*----------------------------------------
-SELECTED DECK END
-------------------------------------------*/
-
-
-
-
-
-
-
-/*----------------------------------------
-HOME PAGE START
-------------------------------------------*/
-
-#homeBanner {
-  text-align: center;
-  color: white;
-  font-weight: bold;
-}
-
-
-
-
-/*----------------------------------------
-HOME PAGE END
-------------------------------------------*/
-
-
-
-
-
-/*----------------------------------------
-CUSTOM BUTTONS
+TAG CUSTOM BUTTONS
 ------------------------------------------*/
 
 
@@ -586,17 +506,7 @@ CUSTOM BUTTONS
 
 
 /*----------------------------------------
-CUSTOM BUTTONS END
-------------------------------------------*/
-
-
-
-
-
-
-
-/*----------------------------------------
-BOOTSTRAP OVERRIDES
+TAG BOOTSTRAP OVERRIDES
 ------------------------------------------*/
 
 .navbar {
@@ -634,13 +544,7 @@ BOOTSTRAP OVERRIDES
 }
 
 /*----------------------------------------
-BOOTSTRAP OVERRIDES END
-------------------------------------------*/
-
-
-
-/*----------------------------------------
-FOOTER
+TAG FOOTER JADE
 ------------------------------------------*/
 #footer {
   background-color: @BLACK_TRANS;
@@ -651,7 +555,7 @@ FOOTER
   .socialMedia {
     display: inline-block;
     padding: 10px;
-    margin-right: 20px;
+    margin-right: 12px;
     color: white;
   }
 
@@ -661,8 +565,25 @@ FOOTER
   }
 }
 
+#copyright {
+ color: @LIGHTWHITE; 
+ font-family: @THE_FAM;
+ font-size: 1.2em;
+ text-align: center;
+}
 
+#meanStack {
+  color: @LIGHTWHITE;
+}
 
-/*----------------------------------------
-FOOTER END
-------------------------------------------*/
+//sticky footer
+.container-fluid {
+    min-height: 100%;
+    margin: 0 auto -155px; /* the bottom margin is the negative value of the footer's height */
+
+    &:after {
+    content: "";
+    display: block;
+    height: 155px; 
+  }
+}
