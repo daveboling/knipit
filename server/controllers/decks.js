@@ -33,7 +33,7 @@ exports.saveChanges = function(req, res){
 };
 
 exports.search = function(req, res){
-  Deck.search(req.query, function(err, results){
+  Deck.search(req.query, req.user._id, function(err, results){
     res.send({results: results});
   });
 };

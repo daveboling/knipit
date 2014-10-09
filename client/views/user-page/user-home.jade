@@ -15,7 +15,7 @@
                     label Category
                     select.form-control(name='category' ng-model='deck.category')
                       include ../partials/categories.jade
-                    .customButton(ng-click='createDeck()') Create
+                    button.customButton(ng-click='createDeck()') Create
             .col-sm-2
               a.gravLink(href='https://en.gravatar.com/'): img.gravatar(alt='Create your own Gravatar!' gravatar-src-once='currentUser.email' gravatar-size="200") 
               p.currentUsername {{currentUser.username}}
@@ -24,7 +24,7 @@
             .col-sm-2
         .col-sm-4.backgroundWhite.negatePadding
           #challenges
-              h3 Open Challenges
+              h3 Open Challenges 
               include ../partials/challenges.jade
   
           #history

@@ -54,12 +54,14 @@ Deck.quiz = function(deckId ,cb){
   });
 };
 
-Deck.search = function(query, cb){
-  Deck.collection.find({name: {$regex: '.*'+query.query+'.*', $options: 'i'}}).toArray(cb);
+Deck.search = function(query, userId, cb){
+  Deck.collection.find({name: {$regex: '.*'+query.query+'.*', $options: 'i'}}).toArray(function(err, results){
+    var filteredResults = removeDecks(results, userId);
+    cb(null, filteredResults);
+  });
 };
 
 Deck.rate = function(query, cb){
-  console.log(query);
   Deck.findById(query.deckId, function(err, deck){
     //recast MongoID
     deck._id = Mongo.ObjectID(deck._id);
@@ -111,7 +113,7 @@ function createQuiz(cards){
 
     //grab 4 random cards
     for(var i = 0; i < 4; i++){
-      //this is just in case the deck isn't bigger at least 4 cards
+      //this is just in case the deck isn't bigger than at least 4 cards
       if(!randomCards[i]){
         choices.push('');
       }else{
@@ -164,4 +166,20 @@ function shuffle(cards){
     newDeck = _.shuffle(cards);
   }
   return newDeck;
+}
+
+function removeDecks(results, currentUserId){
+  var newResults = [];
+
+  //remove decks with no enough cards and decks that belong to curently logged in user
+  results.forEach(function(r, index){
+    if(r.ownerId === currentUserId || r.cards.length < 4){
+      return;
+    }else{
+      newResults.push(r);
+    }
+  });
+
+  //remove 0s
+  return newResults;
 }
