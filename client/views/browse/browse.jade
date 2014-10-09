@@ -3,7 +3,7 @@
   #searchBar
     .customHeader Deck Search
     form(novalidate name='searchForm')
-      input(type='text' name='query' ng-model='search.query' required)
+      input(type='text' name='query' ng-model='search.query' ng-minlength='3' required)
       select(ng-model='categoryToFilter' ng-change='filterResults()')
         option(value='*' selected) All
         include ../partials/categories.jade

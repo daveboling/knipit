@@ -11,9 +11,9 @@
                 form(novalidate)
                   .form-group
                     label Deck Name
-                    input.form-control(type='text' name='name' ng-minlength='3' ng-model='deck.name')
+                    input.form-control(type='text' name='name' ng-minlength='3' ng-model='deck.name' required)
                     label Category
-                    select.form-control(name='category' ng-model='deck.category')
+                    select.form-control(name='category' ng-model='deck.category' required)
                       include ../partials/categories.jade
                     button.customButton(ng-click='createDeck()') Create
             .col-sm-2
@@ -37,6 +37,7 @@
             form(novalidate ng-show='decks.length')
               label Sort By Category
               select(ng-model='categoryToFilter' ng-change='filterResults()')
+                option(value='*' selected) All
                 include ../partials/categories.jade
 
             #deckContainer(isotope-container="isotope-container")

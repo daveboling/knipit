@@ -40,6 +40,12 @@
 
     //create a new deck and return the newly created deck w/ deck id
     $scope.createDeck = function(){
+      //check to see if input correct
+      if(!$scope.deck.name || !$scope.deck.category){
+        toastr.error('Silly goose. You forgot something!');
+        return;
+      }
+
       Deck.createDeck($scope.deck).then(function(res){
         $scope.decks.push(res.data.deck);
         $scope.deck = {};
