@@ -170,10 +170,9 @@ function shuffle(cards){
 
 function removeDecks(results, currentUserId){
   var newResults = [];
-
   //remove decks with no enough cards and decks that belong to curently logged in user
   results.forEach(function(r, index){
-    if(r.ownerId === currentUserId){
+    if(r.ownerId.toString() === currentUserId.toString()){
       return;
     }else if(r.cards.length < 4){
       return;
