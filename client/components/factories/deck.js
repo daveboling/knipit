@@ -66,6 +66,22 @@
       return _.compact(newCards);
     }
 
+    function removeExtraCharacters(cards){
+      var flag = false,
+      newCards = cards.map(function(card){
+        if(card.question.length > 460){
+          flag = true;
+          card.question = card.question.substring(460, (card.question.length * -1));
+        }else if(card.answer.length > 460){
+          flag = true;
+          card.answer = card.answer.substring(460, (card.answer.length * -1));
+        }
+        return card;
+      });
+      if(flag){toastr.error('Sorry, we had to trim a few of your cards! They were over the 460 character limit');}
+      return newCards;
+    }
+
     function checkIfOwner(deckId, userId){
       if(deckId !== userId) {
         return false;
@@ -76,17 +92,18 @@
 
 
     return {
-            createDeck:       createDeck,
-            getDecks:         getDecks,
-            selectDeck:       selectDeck,
-            quiz:             quiz,
-            save:             save,
-            removeEmptyCards: removeEmptyCards,
-            searchDecks:      searchDecks,
-            checkIfOwner:     checkIfOwner,
-            challenge:        challenge,
-            rateDeck:         rateDeck,
-            deleteDeck:       deleteDeck
+            createDeck:            createDeck,
+            getDecks:              getDecks,
+            selectDeck:            selectDeck,
+            quiz:                  quiz,
+            save:                  save,
+            removeEmptyCards:      removeEmptyCards,
+            removeExtraCharacters: removeExtraCharacters,
+            searchDecks:           searchDecks,
+            checkIfOwner:          checkIfOwner,
+            challenge:             challenge,
+            rateDeck:              rateDeck,
+            deleteDeck:            deleteDeck
           };
   }]);
 

@@ -29,6 +29,9 @@
       //remove empty cards
       $scope.deck.cards = Deck.removeEmptyCards($scope.deck.cards);
 
+      //remove character over 460 from question and answer
+      $scope.deck.cards = Deck.removeExtraCharacters($scope.deck.cards);
+
       //save edited deck
       Deck.save($scope.deck).then(function(res){
         $scope.editMode = false;
