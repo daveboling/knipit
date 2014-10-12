@@ -10,8 +10,9 @@ include ../partials/card-top.jade
       //answer
       .face.back
         #answer {{currentCard.answer}}
-        i.fa.fa-thumbs-up.fa-3x.thumbs-up(ng-click='thumbs("up"); flipCard()')
-        i.fa.fa-thumbs-down.fa-3x.thumbs-down(ng-click='thumbs("down"); flipCard()') 
+        #THUMBS
+          i.fa.fa-thumbs-up.fa-3x.thumbs-up(ng-click='thumbs("up"); flipCard()')
+          i.fa.fa-thumbs-down.fa-3x.thumbs-down(ng-click='thumbs("down"); flipCard()') 
 
 .wrap#done(ng-show='isComplete')
       p How'd you do?
@@ -26,6 +27,6 @@ include ../partials/card-top.jade
     .modal-dialog.modal-lg
         .modal-content
           .shuffleConfirmation Shuffling the deck will reset your progress. Is that OK?
-            .customButton#shuffle(ng-click='shuffle()' data-toggle='modal' data-target="#shuffleConfirm") Yes
-            .customButton#shuffle(data-toggle='modal' data-target="#shuffleConfirm") No
+            .btn.btn-default.full(ng-click='shuffle()' data-toggle='modal' data-target="#shuffleConfirm") Yes
+            .btn.btn-default.full(data-toggle='modal' data-target="#shuffleConfirm") No
 

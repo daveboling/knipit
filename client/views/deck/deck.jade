@@ -9,8 +9,8 @@
     .col-sm-6
       .flipButton(ng-click='flip()') Flip cards
       .testButton(ng-click='quiz()') Take a test
-      .challengeButton(ng-hide='isOwner' ng-click='challengeMode()') Challenge Deck
-      .deleteButton(ng-click='deleteModal()' ng-show='isOwner') Delete Deck
+      .challengeButton(ng-hide='isOwner' ng-click='challengeModal()') Challenge Deck
+      .deleteButton(ng-show='isOwner' ng-click='deleteModal()') Delete Deck
 
 .row#deckWrapper
   //View Mode
@@ -32,8 +32,8 @@
         button.btn.btn-success.full#addCard(type='button' ng-show='editMode' ng-click='addCard()') Add Card
     .row.big-stuff(ng-show='isOwner')
         .col-xs-12
-        button.btn.btn-danger.full(type='button' ng-hide='editMode' ng-click='editDeck()') Add or Remove
-        button.btn.btn-success.full(type='button' ng-show='editMode' ng-click='saveDeck()') Save
+          button.btn.btn-danger.full(style='height: 75px' type='button' ng-hide='editMode' ng-click='editDeck()') Add or Remove
+          button.btn.btn-success.full(style='height: 75px' type='button' ng-show='editMode' ng-click='saveDeck()') Save
 
 //delete Confirmation
 #deleteDeck(ng-show='showModal')
@@ -42,4 +42,13 @@
     p Are you sure you want to delete this deck? One done, it cannot be recovered.
     .btn.btn-default.full(ng-click='deleteDeck(); deleteModal()') Yes
     .btn.btn-default.full(ng-click='deleteModal()') No
+
+
+#challengeDeck(ng-show='showChallengeModal')
+  .challengeConfirmation
+    p You will have <em>30 seconds</em> to answer each question.
+    | Keep in mind, each passing second is a penalty aganst your score!
+    | Are you ready?
+    .btn.btn-default.full(ng-click='challengeModal(); challengeMode()') Yes
+    .btn.btn-default.full(ng-click='challengeModal()') No
 

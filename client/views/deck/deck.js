@@ -4,9 +4,10 @@
   var deck = angular.module('knipit');
 
   deck.controller('DeckCtrl', ['$scope', '$routeParams', '$location', 'Deck', 'User', function($scope, $routeParams, $location, Deck, User){
-    $scope.editMode    = false;
-    $scope.deck        = {};
-    $scope.showModal   = false;
+    $scope.editMode           = false;
+    $scope.deck               = {};
+    $scope.showModal          = false;
+    $scope.showChallengeModal = false;
 
     //inital deck load
     Deck.selectDeck($routeParams.deckId).then(function(res){
@@ -77,6 +78,10 @@
 
     $scope.deleteModal = function(){
       $scope.showModal = !$scope.showModal;
+    };
+
+    $scope.challengeModal = function(){
+      $scope.showChallengeModal = !$scope.showChallengeModal;
     };
 
 

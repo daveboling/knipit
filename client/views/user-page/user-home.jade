@@ -13,7 +13,7 @@
                     label Category
                     select.form-control(name='category' ng-model='deck.category' required)
                       include ../partials/categories.jade
-                    button.customButton(ng-click='createDeck()') Create
+                    button.customButton(ng-click='createDeck()' style='width:100%') Create
             .col-sm-2
               a.gravLink(href='https://en.gravatar.com/'): img.gravatar(alt='Create your own Gravatar!' gravatar-src-once='currentUser.email' gravatar-size="200") 
               p.currentUsername {{currentUser.username}}

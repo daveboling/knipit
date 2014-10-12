@@ -309,7 +309,7 @@ TAG USER-PAGE JADE
 
 }
 
-#deleteDeck {
+#deleteDeck, #challengeDeck {
   position: fixed;
   top: 0;
   bottom: 0;
@@ -318,7 +318,7 @@ TAG USER-PAGE JADE
   width: 100%;
   background-color: rgba(0, 0, 0, 0.5);
 
-  .deleteConfirmation {
+  .deleteConfirmation, .challengeConfirmation {
     position: fixed;
     top: 25%;
     left: 25%;
@@ -331,6 +331,15 @@ TAG USER-PAGE JADE
     border: 1px solid black;
     text-align: center;
   }
+
+  &.ng-enter {
+    transition: 1s;
+    opacity: 0;
+  }
+  &.ng-enter-active {
+    opacity: 1;
+  }
+
 }
 
 /*----------------------------------------
@@ -350,11 +359,6 @@ TAG DECK JADE
 
   #deck-category, #deck-subcategory {
     font-size: 1.2em;
-  }
-
-  #deck-name:hover, #deck-category:hover, #deck-subcategory:hover {
-    border: 1px solid white;
-    cursor: pointer;
   }
 
   .action {
