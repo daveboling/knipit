@@ -79,6 +79,10 @@
       $location.path('/user-home');
     };
 
+    $scope.challengeMode = function(){
+      $location.path('/challenge/' + $scope.deck._id + '/' + true + '/' + 'noid');
+    };
+
     //HELPER FUNCTIONS
 
     //reset card session for when user is in middle of game

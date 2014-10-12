@@ -3,7 +3,7 @@
 form#registerForm(role='form', novalidate, name='userForm')
   .form-group
     label(for='username') Username
-    input.form-control#username(type='text', name='username', ng-model='user.username', ng-minlength='5', ng-maxlength='12', autofocus, required)
+    input.form-control#username(type='text', name='username', ng-change='nameLength()' ng-model='user.username', ng-minlength='5', ng-maxlength='12', autofocus, required)
   .form-group
     label(for='email') Email
     input.form-control#email(type='email', name='email', ng-model='user.email', autofocus, required)
@@ -13,5 +13,5 @@ form#registerForm(role='form', novalidate, name='userForm')
   .form-group
     label(for='confirmPassword') Confirm Password
     input.form-control#confirmPassword(type='password', ng-change='checkPass()', ng-model='user.passwordConfirm', required)
-  .submitButton(ng-click='register()') Submit 
+  button.submitButton(ng-click='register()') Submit 
 

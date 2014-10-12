@@ -5,9 +5,10 @@
   .controller('RegisterCtrl', ['$scope', '$location', 'User', function($scope, $location, User){
     $scope.user = {};
     $scope.matched = false;
+    $scope.validName = false;
 
     function success(response){
-      toastr.success('Welcome.');
+      toastr.success('Registration successful!');
       $location.path('/login');
     }
 
@@ -17,8 +18,10 @@
     }
 
     $scope.register = function(){
-      if($scope.matched === false){
-        toastr.error('Your passwords do not match, please try again.');
+      if(!$scope.matched){
+        toastr.error('Passwords do not match, please try again.');
+      }else if(!$scope.validName){
+        toastr.error('Username must be greater than 5 characters.');
       }else{
         User.register($scope.user).then(success, failure);
       }
@@ -26,6 +29,10 @@
 
     $scope.checkPass = function(){
       $scope.matched = $scope.user.password === $scope.user.passwordConfirm;
+    };
+
+    $scope.nameLength = function(){
+      $scope.validName = (!$scope.user.username) ? false : true;
     };
 
   }]);

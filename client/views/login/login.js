@@ -6,7 +6,7 @@
     $scope.user = {};
 
     function successLogin(response){
-      toastr.success('Welcome.');
+      toastr.success('Login successful!');
       //broadcast success to all children - possibly use later
       $rootScope.$broadcast(AUTH_EVENTS.loginSuccess);
       $scope.setCurrentUser(response.data.user);

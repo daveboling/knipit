@@ -19,6 +19,7 @@ include ../partials/card-top.jade
       #correct Correct: {{progress.correct}} 
       #wrong Wrong: {{progress.wrong}}
       .customButton(ng-click='again()') Again?
+      .customButton(ng-hide='isOwner' ng-click='challengeMode()') Challenge 
       .customButton(ng-click='goToDashboard()') Back to Dashboard
 
 

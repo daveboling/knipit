@@ -1,7 +1,7 @@
 .row#leaderboards
   .wrap
     .col-sm-6
-      .customerHeader#winHeader Win Leaders
+      .customerHeader#winHeader Overall Wins 
       //Win Leaders
       #winLeaders
         .row(ng-repeat='winner in winLeaders')
@@ -9,7 +9,7 @@
           .col-xs-6 {{winner.wins}}
       
     .col-sm-6
-      .customerHeader#scoreHeader Score Leaders
+      .customerHeader#scoreHeader Overall Score
       //Score Leaders
       #scoreLeaders
         .row(ng-repeat='scorer in scoreLeaders')
