@@ -1,0 +1,43 @@
+@NAVY: rgba(0, 12.2, 24.7, 0.8);
+@AQUA: rgba(100, 219, 200, 0.7);
+@WHITE: #FFFFFF;
+@RED: #FF4136;
+@LIGHTWHITE: rgba(255, 255, 255, 0.7);
+
+//Transitional colors
+@HOVER_COLOR: rgba(255, 255, 255, 0.5);
+@BLACK_TRANS: rgba(0, 0, 0, 0.5);
+
+#leaderboards {
+  background-color: @BLACK_TRANS;
+  width: 100%;
+  min-height: 400px;
+  margin: 0px;
+  text-align: center;
+  .sans-open;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.7em;
+
+  #winLeaders, #scoreLeaders {
+    text-align: left;
+    min-height: 400px;
+    max-height: 100%;
+    margin-bottom: 30px;
+    padding: 10px;
+  }
+
+  #winLeaders {
+    border: 1px solid @AQUA;
+  }
+  #scoreLeaders {
+    border: 1px solid @RED;
+  }
+}
+
+.sans-open {
+  font-family: 'Source Sans Pro', 'Arial';
+}
+
+#winHeader, #scoreHeader {
+  font-size: 2em;
+}

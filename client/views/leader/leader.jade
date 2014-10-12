@@ -1,8 +1,17 @@
-
-div(ng-repeat='winner in winLeaders')
-  p {{winner.username}}
-  p {{winner.wins}}
-
-
-pre {{winLeaders}}
-pre {{scoreLeaders}}
+.row#leaderboards
+  .wrap
+    .col-sm-6
+      .customerHeader#winHeader Win Leaders
+      //Win Leaders
+      #winLeaders
+        .row(ng-repeat='winner in winLeaders')
+          .col-xs-6 {{$index + 1 + '.'}} {{winner.username}}
+          .col-xs-6 {{winner.wins}}
+      
+    .col-sm-6
+      .customerHeader#scoreHeader Score Leaders
+      //Score Leaders
+      #scoreLeaders
+        .row(ng-repeat='scorer in scoreLeaders')
+          .col-xs-6 {{$index + 1 + '.'}} {{scorer.username}}
+          .col-xs-6 {{scorer.allTimeScore}}
