@@ -1,0 +1,7 @@
+#challengeDeck(ng-show='showChallengeModal')
+  .challengeConfirmation
+    p You will have <em>30 seconds</em> to answer each question.
+    | Keep in mind, each passing second is a penalty against your score!
+    p Are you ready?
+    .btn.btn-default.full(ng-click='challengeModal(); challengeMode()') Yes
+    .btn.btn-default.full(ng-click='challengeModal()') No

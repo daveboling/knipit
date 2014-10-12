@@ -19,7 +19,7 @@ include ../partials/card-top.jade
       #correct Correct: {{progress.correct}} 
       #wrong Wrong: {{progress.wrong}}
       .customButton(ng-click='again()') Again?
-      .customButton(ng-hide='isOwner' ng-click='challengeMode()') Challenge 
+      .customButton(ng-hide='isOwner' ng-click='challengeModal()') Challenge 
       .customButton(ng-click='goToDashboard()') Back to Dashboard
 
 
@@ -30,4 +30,6 @@ include ../partials/card-top.jade
           .shuffleConfirmation Shuffling the deck will reset your progress. Is that OK?
             .btn.btn-default.full(ng-click='shuffle()' data-toggle='modal' data-target="#shuffleConfirm") Yes
             .btn.btn-default.full(data-toggle='modal' data-target="#shuffleConfirm") No
+
+include ../partials/chal-modal.jade
 

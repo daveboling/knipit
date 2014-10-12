@@ -4,12 +4,13 @@
   var quiz = angular.module('knipit');
 
   quiz.controller('QuizCtrl', ['$scope', '$routeParams', '$location', 'Deck', function($scope, $routeParams, $location, Deck){
-    $scope.deck = {};
-    $scope.cardIndex = 0;
-    $scope.currentCard = {};
-    $scope.flipped = false;
-    $scope.isComplete = false;
-    $scope.progress = {complete: 0, wrong: 0, correct: 0, deckSize: 0};
+    $scope.deck                 = {};
+    $scope.cardIndex            = 0;
+    $scope.currentCard          = {};
+    $scope.flipped              = false;
+    $scope.isComplete           = false;
+    $scope.showChallengeModal   = false;
+    $scope.progress             = {complete: 0, wrong: 0, correct: 0, deckSize: 0};
 
     Deck.quiz($routeParams.deckId).then(function(res){
       $scope.deck = res.data.deck;
@@ -72,6 +73,10 @@
 
     $scope.challengeMode = function(){
       $location.path('/challenge/' + $scope.deck._id + '/' + true + '/' + 'noid');
+    };
+
+    $scope.challengeModal = function(){
+      $scope.showChallengeModal = !$scope.showChallengeModal;
     };
 
     //HELPER FUNCTIONS
