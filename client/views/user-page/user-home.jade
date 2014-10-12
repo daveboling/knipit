@@ -1,9 +1,7 @@
-.wrap.no-margin-top
-  .row.negatePadding
-    .col-xs-12
-      .row
+.fullWrap.no-margin-top
+      .row.negatePadding.negateMargin
         #userControls
-          .row
+          .row.negatePadding.negateMargin
             .col-sm-8 
               .customButton(ng-click='new = true' ng-hide='new') New Deck+
               .customButton(ng-click='new = false' ng-show='new') Cancel
@@ -21,6 +19,7 @@
               p.currentUsername {{currentUser.username}}
               .wins Wins: {{currentUser.wins}}
               .draws Draws: {{currentUser.draws}}
+              .allTimeScore All-time Score: {{currentUser.allTimeScore}}
             .col-sm-2
         .col-sm-4.backgroundWhite.negatePadding
           #challenges
