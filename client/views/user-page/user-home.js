@@ -5,7 +5,6 @@
 
   //CONTROLLER
   userHome.controller('UserHomeCtrl', ['$scope', '$location', 'Deck', 'Challenge', 'History', function($scope, $location, Deck, Challenge, History){
-    $scope.title              = 'User-Page';
     $scope.deck               = {};
     $scope.decks              = [];
     $scope.challenges         = [];

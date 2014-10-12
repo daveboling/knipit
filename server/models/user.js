@@ -10,6 +10,7 @@ function User(o){
 
   this.wins          = 0;
   this.draws         = 0;
+  this.allTimeScore  = 0;
 }
 
 Object.defineProperty(User, 'collection', {
@@ -67,6 +68,25 @@ User.addDraw = function(receiverId, senderId, cb){
       });
 
     });
+  });
+};
+
+User.getLeaders = function(cb){
+  User.collection.find().sort({wins: -1}).limit(10).toArray(cb);
+};
+
+User.updateUserScore = function(userId, score, cb){
+
+  //check userId type
+  if(typeof userId === Object){
+    userId = userId.toString();
+  }
+
+  //find user
+  User.findById(userId, function(err, user){
+    user.allTimeScore += score;
+    user._id = Mongo.ObjectID(user._id);
+    User.collection.save(user, cb);
   });
 };
 

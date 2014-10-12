@@ -47,7 +47,10 @@ Challenge.create = function(info, cb){
     if(challenge) { return cb();}
     var c = new Challenge(info);
     c.challengerScore = score;
-    Challenge.collection.save(c, cb);
+    Challenge.collection.save(c, function(err){
+      //update challenger score
+      User.updateUserScore(info.senderId, score, cb);
+    });
   });
 };
 
@@ -96,7 +99,10 @@ Challenge.complete = function(challengeId, score, cb){
       challenge.winner = username;
       History.create(challenge, function(err2){
         //quick way to remove a challenge, not very semantic
-        Challenge.decline(challengeId, cb);
+        Challenge.decline(challengeId, function(err){
+          //update receiver score
+          User.updateUserScore(challenge.receiverId, score, cb);
+        });
       });
     });
   });

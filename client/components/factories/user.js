@@ -24,8 +24,12 @@
       return $http.get('/getOwner/'+ownerId);
     }
 
+    function getCurrentLeaders(){
+      return $http.get('/getLeaders');
+    }
 
-    return {register:register, login:login, logout:logout, checkSession: checkSession, getOwner: getOwner};
+
+    return {register:register, login:login, logout:logout, checkSession: checkSession, getOwner: getOwner, getCurrentLeaders: getCurrentLeaders};
   }]);
 })();
 
