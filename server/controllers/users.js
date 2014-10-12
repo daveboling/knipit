@@ -58,7 +58,7 @@ exports.getOwner = function(req, res){
 
 exports.getLeaders = function(req, res){
   User.getLeaders(function(err, wins, score){
-    res.send({winLeaders: wins, scoreLeader: score || 0});
+    res.send({winLeaders: wins || 0, scoreLeaders: score || 0});
   });
 };
 

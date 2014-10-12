@@ -72,7 +72,11 @@ User.addDraw = function(receiverId, senderId, cb){
 };
 
 User.getLeaders = function(cb){
-  User.collection.find().sort({wins: -1}).limit(10).toArray(cb);
+  User.collection.find().sort({wins: -1}).limit(10).toArray(function(err1, wins){
+    User.collection.find().sort({allTimeScore: -1}).limit(10).toArray(function(err2, score){
+      cb(null, wins, score);
+    });
+  });
 };
 
 User.updateUserScore = function(userId, score, cb){

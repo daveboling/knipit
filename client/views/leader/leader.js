@@ -8,9 +8,11 @@
     $scope.scoreLeaders = [];
 
     User.getCurrentLeaders().then(function(res){
+      console.log(res.data);
       $scope.winLeaders   = res.data.winLeaders;
       $scope.scoreLeaders = res.data.scoreLeaders;
     });
+
 
   }]);
 })();
