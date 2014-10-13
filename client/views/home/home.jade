@@ -7,19 +7,32 @@
 
 .row.negateMargin#homeTwo
   .wrap
-    .customerHeader Here's how it works:
-    .col-sm-3
-      p Register an account (ICON HERE)
-    .col-sm-3
-      p Create decks of card (IMAGE HERE)
-    .col-sm-3
-      p Browse other decks (IMAGE HERE)
-    .col-sm-3
-      p Flip cards, take a quiz, or challenge someone! (IMAGE HERE)
+    .customerHeader(style='font-size: 2.3em') Here's how it works:
+    .col-sm-4
+      p Register an account
+      img.homeImage(src='/assets/images/home/reg.png')
+    .col-sm-4
+      p View your profile
+      img.homeImage(src='/assets/images/home/profile.png')
+    .col-sm-4
+      p Create a decks of card 
+      img.homeImage(src='/assets/images/home/create.png')
+  .row.negateMargin
+    .col-sm-6
+      p View decks or leaderboards
+      img.homeImage(src='/assets/images/home/other.png')
+    .col-sm-6
+      p Flip cards, take a quiz, or challenge someone!
+      img.homeImage(src='/assets/images/home/cards.png')
 
 .row.negateMargin#homeThree
   .wrap
-    .customerHeader Seasonal Leaderboards
-    .col-xs-12
-      p Blah blah blah, something about Leaderboards!
-      p Blah blah blah, deck category voting!
+    .customerHeader(style='font-size: 3em') How to succeed on Knipit.
+    .col-sm-4.leftAlign
+      p <span class='emph'>1</span> Flash cards should be simple but effective. They should be readable and understandable to anyone.
+    .col-sm-4.leftAlign
+      p  <span class='emph'>2</span> Flash cards should have proper form, meaning, ask good questions and give good answers. 
+      | If you challenge a deck that you think should be better, down-vote it!
+      | However, if it's a good one, why not give it a up-vote?
+    .col-sm-4.leftAlign
+      p <span class='emph'>3</span> Flash cards should be shareable. If a deck has a high rating then it will most likely get challenges.
