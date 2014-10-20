@@ -114,7 +114,7 @@ Challenge.calcWinner = function(challenge, cb){
     winnerId = challenge.receiverId;
   }
   else if (challenge.receiverScore < challenge.challengerScore){
-    winnerId = challenge.receiverId;
+    winnerId = challenge.challengerId;
   }
   else {
     User.addDraw(challenge.receiverId, challenge.senderId, function(err){
